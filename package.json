@@ -1,0 +1,49 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "storybook": "start-storybook -p 7007",
+    "build-storybook": "build-storybook",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/__mocks__/globalMock.js"
+    ]
+  },
+  "dependencies": {
+    "@shopify/restyle": "^1.4.0",
+    "expo": "~41.0.1",
+    "expo-status-bar": "~1.0.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-web": "~0.13.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-static-block": "^7.14.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.0",
+    "@storybook/addon-actions": "^5.3",
+    "@storybook/addon-knobs": "^5.3",
+    "@storybook/addon-links": "^5.3",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.25",
+    "@storybook/react-native": "^5.3.25",
+    "@storybook/react-native-server": "^5.3.23",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
+    "babel-loader": "^8.2.2",
+    "jest-expo": "^41.0.0",
+    "typescript": "~4.0.0"
+  },
+  "private": true
+}
