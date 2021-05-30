@@ -4,34 +4,70 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ActivityIndicator, FlatList } from 'react-native';
 import Text from '../../Components/restyle/Text';
 import Box from '../../Components/restyle/Box';
+import ProductList from './ProductList';
+import { Container, Header, Icon, Item, Input } from 'native-base';
+import SearchedProducts from './SearchedProducts';
 
 const data: Product[] = require('../../assets/mockData/products.json');
 
-interface Props {}
-
-const ProductContainer = (props: Props) => {
+const ProductContainer = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
+  const [focus, setFocus] = useState<boolean>(true);
 
   useEffect(() => {
     setProducts(data);
+    setProductsFiltered(data);
+    setFocus(true);
 
     return () => {
       setProducts([]);
+      setProductsFiltered([]);
+      setFocus(false);
     };
   }, []);
 
+  const searchProduct = (text: string) => {
+    setProductsFiltered(
+      products.filter((product) =>
+        product.name.toLowerCase().includes(text.toLowerCase())
+      )
+    );
+  };
+
+  const openList = () => {
+    setFocus(true);
+  };
+
+  const closeList = () => {
+    setFocus(false);
+  };
+
   return (
-    <Box flex={1} paddingVertical="xl" paddingHorizontal="m">
-      <Text variant="header">Prod Container</Text>
-      <View>
-        <FlatList
-          horizontal
-          data={products}
-          renderItem={({ item }) => <Text>{item.brand}</Text>}
-          keyExtractor={(item) => item.name}
-        />
-      </View>
-    </Box>
+    <Container>
+      <Header searchBar rounded>
+        <Item>
+          <Icon name="ios-search" />
+          <Input
+            placeholder="Search"
+            onFocus={openList}
+            onChangeText={(text) => searchProduct(text)}
+          />
+          {focus === true ? (
+            <Icon onPress={closeList} name="ios-close" />
+          ) : null}
+        </Item>
+      </Header>
+      {focus ? (
+        <SearchedProducts productsFiltered={productsFiltered} />
+      ) : (
+        <Box flex={1} paddingHorizontal="s" backgroundColor="mainBackground">
+          <Box alignItems="center">
+            <ProductList items={products} />
+          </Box>
+        </Box>
+      )}
+    </Container>
   );
 };
 
