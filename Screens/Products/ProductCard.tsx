@@ -14,7 +14,6 @@ interface Props {
 
 const ProductCard = (props: Props) => {
   const { name, price, image, countInStock } = props;
-
   return (
     <View style={styles.container}>
       <View style={styles.image}>
@@ -25,7 +24,7 @@ const ProductCard = (props: Props) => {
             style={styles.image}
           />
         ) : (
-        <Image
+          <Image
             resizeMode="contain"
             source={require('../../assets/placeholder.jpeg')}
             style={styles.image}
@@ -37,7 +36,7 @@ const ProductCard = (props: Props) => {
       </Text>
       <Text variant="body">${price}</Text>
       {countInStock > 0 ? (
-        <View style={{ marginBottom: 60 }}>
+        <View style={{ marginBottom: 10 }}>
           <Button onPress={() => {}} label="Add" />
         </View>
       ) : (

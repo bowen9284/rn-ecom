@@ -11,7 +11,7 @@ const palette = {
   greenDark: '#0A906E',
 
   black: '#0B0B0B',
-  white: '#F0F2F3',
+  white: '#FFFFFF',
   gray: '#dddddd',
 };
 
@@ -19,10 +19,13 @@ const theme = createTheme({
   colors: {
     mainBackground: palette.gray,
     mainForeground: palette.black,
-    cardPrimaryBackground: palette.purplePrimary,
+    cardPrimaryBackground: palette.white,
     buttonPrimaryBackground: palette.purplePrimary,
+    buttonDisabledPrimaryBackground: palette.purpleDark,
     mainText: palette.black,
+    lightText: palette.white,
     mainButton: palette.greenPrimary,
+    borderPrimary: palette.black,
   },
   spacing: {
     s: 8,
@@ -66,10 +69,17 @@ const theme = createTheme({
     buttonLabel: {
       fontSize: 16,
       lineHeight: 24,
+      color: 'lightText',
+    },
+    secondaryButtonLabel: {
+      fontSize: 16,
+      lineHeight: 24,
       color: 'mainButton',
     },
   },
-  cardVariants: {},
+  cardVariants: {
+    color: 'cardPrimaryBackground',
+  },
 });
 
 export type Theme = typeof theme;
