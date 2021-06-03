@@ -27,7 +27,7 @@ const Button = ({ onPress, label, ...rest }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View {...props}>
-        <Text variant="buttonLabel">{label}</Text>
+        <Text variant="secondaryButtonLabel">{label}</Text>
       </View>
     </TouchableOpacity>
   );

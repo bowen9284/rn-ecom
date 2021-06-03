@@ -8,6 +8,6 @@ interface Product {
   isFeatured: boolean;
   name: string;
   description: string;
-  category: {};
+  category: Category;
   countInStock: number;
 }

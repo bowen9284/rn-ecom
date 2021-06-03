@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Dimensions,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
-import Box from '../../Components/restyle/Box';
-import Text from '../../Components/restyle/Text';
+import { TouchableOpacity, FlatList } from 'react-native';
 import ProductCard from './ProductCard';
 
 interface Props {
@@ -15,15 +7,19 @@ interface Props {
 }
 
 const ProductList = (props: Props) => {
+  const { items } = props;
+  
   return (
     <FlatList
       numColumns={2}
-      data={props.items}
+      data={items}
       keyExtractor={(item) => item.name}
       renderItem={({ item }) => (
-        <TouchableOpacity>
-          <ProductCard key={item.name} {...item} />
-        </TouchableOpacity>
+        <>
+          <TouchableOpacity>
+            <ProductCard key={item.name} {...item} />
+          </TouchableOpacity>
+        </>
       )}
     />
   );
