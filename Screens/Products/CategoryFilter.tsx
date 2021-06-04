@@ -24,6 +24,7 @@ const CategoryFilter = (props: Props) => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {categories.map((cat, catIndex) => (
             <TouchableOpacity
+              key={catIndex}
               onPress={() => {
                 const isActive =
                   active === categories.indexOf(cat) ? -1 : catIndex;

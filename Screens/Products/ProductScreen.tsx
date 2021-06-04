@@ -21,7 +21,7 @@ import usePrevious from '../../hooks/usePrevious';
 const mockProducts: Product[] = require('../../assets/mockData/products.json');
 const mockCategories: Category[] = require('../../assets/mockData/categories.json');
 
-const ProductContainer = () => {
+const ProductScreen = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
@@ -136,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductContainer;
+export default ProductScreen;
