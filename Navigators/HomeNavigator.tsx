@@ -1,16 +1,46 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text } from 'react-native';
-import ProductScreen from '../Screens/Products/ProductScreen';
+import { Image } from 'react-native';
+import Box from '../Components/restyle/Box';
 
-const Stack = createStackNavigator();
+import ProductDetail from '../Screens/Products/ProductDetail';
+import ProductsScreen from '../Screens/Products/ProductsScreen';
 
-interface Props {}
+export type HomeStackParamList = {
+  ProductsScreen: undefined;
+  ProductDetail: { product: Product };
+};
 
-const HomeNavigator = (props: Props) => {
+const Stack = createStackNavigator<HomeStackParamList>();
+
+const LogoTitle = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={ProductScreen} />
+    <Box>
+      <Image
+        resizeMode="contain"
+        style={{ width: 40 }}
+        source={require('../assets/logo.jpeg')}
+      />
+    </Box>
+  );
+};
+
+const HomeNavigator = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle: (props) => <LogoTitle />,
+        headerBackTitle: 'Back',
+      }}
+    >
+      <Stack.Screen
+        name="ProductsScreen"
+        component={ProductsScreen}
+        options={{
+          headerLayoutPreset: 'center',
+        }}
+      />
+      <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   );
 };

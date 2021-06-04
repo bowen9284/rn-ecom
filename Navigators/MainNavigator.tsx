@@ -1,18 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProductScreen from '../Screens/Products/ProductScreen';
+import ProductsScreen from '../Screens/Products/ProductsScreen';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import CartScreen from '../Screens/Cart/CartScreen';
 import UserScreen from '../Screens/User/UserScreen';
 import AdminScreen from '../Screens/Admin/AdminScreen';
 import HomeNavigator from './HomeNavigator';
 
-const Tab = createBottomTabNavigator();
+type RootTabParamList = {
+  Home: undefined;
+  Cart: undefined;
+  User: undefined;
+  Admin: undefined;
+};
 
-interface Props {}
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
-const MainNavigator = (props: Props) => {
+const MainNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"

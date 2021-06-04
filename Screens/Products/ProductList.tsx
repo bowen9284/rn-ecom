@@ -4,11 +4,12 @@ import ProductCard from './ProductCard';
 
 interface Props {
   items: Product[];
+  navigation: any;
 }
 
 const ProductList = (props: Props) => {
-  const { items } = props;
-  
+  const { items, navigation } = props;
+
   return (
     <FlatList
       numColumns={2}
@@ -16,7 +17,13 @@ const ProductList = (props: Props) => {
       keyExtractor={(item) => item.name}
       renderItem={({ item }) => (
         <>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {
+                product: item,
+              })
+            }
+          >
             <ProductCard key={item.name} {...item} />
           </TouchableOpacity>
         </>
