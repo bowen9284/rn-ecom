@@ -1,17 +1,17 @@
 import {
   createRestyleComponent,
   createVariant,
-  spacing,
   SpacingProps,
   VariantProps,
 } from '@shopify/restyle';
 import { Theme } from '../../util/theme';
+import Box from './Box';
 
 type Props = SpacingProps<Theme> & VariantProps<Theme, 'cardVariants'>;
 
-const Card = createRestyleComponent<Props, Theme>([
-  spacing,
-  createVariant({ themeKey: 'cardVariants' }),
-]);
+const Card = createRestyleComponent<
+  VariantProps<Theme, 'cardVariants'> & React.ComponentProps<typeof Box>,
+  Theme
+>([createVariant({ themeKey: 'cardVariants' })], Box);
 
 export default Card;

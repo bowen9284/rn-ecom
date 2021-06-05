@@ -2,17 +2,18 @@ import React from 'react';
 import { ThemeProvider } from '@shopify/restyle';
 import theme from './util/theme';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import MainNavigator from './Navigators/MainNavigator';
-
-const Stack = createStackNavigator();
+import { Provider } from 'react-redux';
+import store from './Redux/store';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <MainNavigator />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <MainNavigator />
+        </NavigationContainer>
+      </Provider>
     </ThemeProvider>
   );
 }

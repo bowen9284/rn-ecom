@@ -13,7 +13,7 @@ import mockProducts from '../../assets/mockData/products.json';
 import mockCategories from '../../assets/mockData/categories.json';
 import { RouteProp } from '@react-navigation/native';
 
-type ProductsScreenNavigationProp = StackNavigationProp<
+export type ProductsScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
   'ProductsScreen'
 >;
@@ -27,15 +27,13 @@ interface Props {
 
 const ProductsScreen = (props: Props) => {
   const { navigation } = props;
-  
+
+  const [initialState, setInitialState] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
   const [focus, setFocus] = useState<boolean>();
-
   const [active, setActive] = useState<number>(-1);
-
-  const [initialState, setInitialState] = useState<Product[]>([]);
 
   useEffect(() => {
     setProducts(mockProducts);
@@ -44,15 +42,6 @@ const ProductsScreen = (props: Props) => {
     setCategories(mockCategories);
     setActive(-1);
     setInitialState(mockProducts);
-
-    // return () => {
-    //   setProducts([]);
-    //   setProductsFiltered([]);
-    //   setCategories([]);
-    //   setFocus(false);
-    //   setActive(-1);
-    //   setInitialState([]);
-    // };
   }, []);
 
   const searchProduct = (text: string) => {
@@ -102,13 +91,16 @@ const ProductsScreen = (props: Props) => {
           autoCorrect={false}
         />
         {focus === true ? (
-          <Pressable onPress={() => closeList()}>
+          <Pressable android_ripple onPress={() => closeList()}>
             <EvilIcons name="close" size={20} color="black" />
           </Pressable>
         ) : null}
       </Box>
       {focus ? (
-        <SearchedProducts productsFiltered={productsFiltered} />
+        <SearchedProducts
+          productsFiltered={productsFiltered}
+          navigation={navigation}
+        />
       ) : (
         <>
           <CategoryFilter

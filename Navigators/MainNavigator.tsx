@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProductsScreen from '../Screens/Products/ProductsScreen';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import CartScreen from '../Screens/Cart/CartScreen';
 import UserScreen from '../Screens/User/UserScreen';
 import AdminScreen from '../Screens/Admin/AdminScreen';
 import HomeNavigator from './HomeNavigator';
+import CartNavigator from './CartNavigator';
 
 type RootTabParamList = {
   Home: undefined;
@@ -39,7 +38,7 @@ const MainNavigator = () => {
       />
       <Tab.Screen
         name="Cart"
-        component={CartScreen}
+        component={CartNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="shoppingcart" size={size} color={color} />

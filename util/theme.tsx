@@ -1,5 +1,4 @@
 import { createTheme } from '@shopify/restyle';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const palette = {
   purpleLight: '#8C6FF7',
@@ -13,6 +12,8 @@ const palette = {
   black: '#0B0B0B',
   white: '#FFFFFF',
   gray: '#dddddd',
+
+  red: '#ff2d54',
 };
 
 const theme = createTheme({
@@ -22,9 +23,10 @@ const theme = createTheme({
     cardPrimaryBackground: palette.white,
     buttonPrimaryBackground: palette.purplePrimary,
     buttonDisabledPrimaryBackground: palette.purpleDark,
+    buttonMain: palette.greenPrimary,
+    buttonRed: palette.red,
     mainText: palette.black,
     lightText: palette.white,
-    mainButton: palette.greenPrimary,
     borderPrimary: palette.black,
   },
   spacing: {
@@ -71,14 +73,21 @@ const theme = createTheme({
       lineHeight: 24,
       color: 'lightText',
     },
-    secondaryButtonLabel: {
+    successButtonLabel: {
       fontSize: 16,
       lineHeight: 24,
-      color: 'mainButton',
+      color: 'buttonMain',
+    },
+    dangerButtonLabel: {
+      fontSize: 16,
+      lineHeight: 24,
+      color: 'buttonRed',
     },
   },
   cardVariants: {
-    color: 'cardPrimaryBackground',
+    productCard: {
+      color: 'cardPrimaryBackground',
+    },
   },
 });
 

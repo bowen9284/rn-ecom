@@ -1,15 +1,15 @@
 import React from 'react';
-import { TouchableOpacity, FlatList } from 'react-native';
+import { TouchableOpacity, FlatList, Platform, Pressable } from 'react-native';
 import ProductCard from './ProductCard';
+import { ProductsScreenNavigationProp } from './ProductsScreen';
 
 interface Props {
   items: Product[];
-  navigation: any;
+  navigation: ProductsScreenNavigationProp;
 }
 
 const ProductList = (props: Props) => {
   const { items, navigation } = props;
-
   return (
     <FlatList
       numColumns={2}
@@ -17,15 +17,28 @@ const ProductList = (props: Props) => {
       keyExtractor={(item) => item.name}
       renderItem={({ item }) => (
         <>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('ProductDetail', {
-                product: item,
-              })
-            }
-          >
-            <ProductCard key={item.name} {...item} />
-          </TouchableOpacity>
+          {Platform.OS === 'ios' ? (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('ProductDetail', {
+                  product: item,
+                })
+              }
+            >
+              <ProductCard key={item.name} product={item} />
+            </TouchableOpacity>
+          ) : (
+            <Pressable
+              android_ripple={{ color: '#8C6FF7', borderless: true }}
+              onPress={() =>
+                navigation.navigate('ProductDetail', {
+                  product: item,
+                })
+              }
+            >
+              <ProductCard key={item.name} product={item} />
+            </Pressable>
+          )}
         </>
       )}
     />

@@ -5,10 +5,13 @@ import { ScrollView, Image, StyleSheet } from 'react-native';
 import Box from '../../Components/restyle/Box';
 import Button from '../../Components/restyle/Button';
 import Text from '../../Components/restyle/Text';
+import { useAppDispatch } from '../../hooks/redux';
 
 import { HomeStackParamList } from '../../Navigators/HomeNavigator';
+import { addToCart } from '../../Redux/Slices/cartSlice';
+import { formatPrice } from '../../util/currency';
 
-type ProductDetailScreenNavigationProp = StackNavigationProp<
+export type ProductDetailScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
   'ProductDetail'
 >;
@@ -21,6 +24,8 @@ interface Props {
 }
 
 const ProductDetail = (props: Props) => {
+  const dispatch = useAppDispatch();
+
   const { route } = props;
   const [product, setProduct] = useState<Product>(route.params.product);
   const [availability, setAvailability] = useState('');
@@ -56,8 +61,13 @@ const ProductDetail = (props: Props) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Text variant="subheader">${product.price}</Text>
-          <Button label="Add" onPress={() => {}} />
+          <Text variant="subheader">{formatPrice(product.price)}</Text>
+          <Button
+            label="Add"
+            onPress={() => {
+              dispatch(addToCart(product));
+            }}
+          />
         </Box>
       </Box>
     </>

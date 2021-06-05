@@ -1,10 +1,5 @@
-import { Item } from 'native-base';
 import React from 'react';
-import {
-  GestureResponderEvent,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import Box from '../../Components/restyle/Box';
 import Text from '../../Components/restyle/Text';
 
@@ -14,7 +9,7 @@ interface Props {
   setActive: (index: number) => void;
   onCategoryFilter: (filterCriteria: Category, active: number) => void;
 }
-// todo fix filtering to handle going from one active filter to another
+
 const CategoryFilter = (props: Props) => {
   const { active, categories, setActive, onCategoryFilter } = props;
 

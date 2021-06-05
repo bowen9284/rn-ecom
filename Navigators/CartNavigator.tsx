@@ -2,15 +2,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image } from 'react-native';
 import Box from '../Components/restyle/Box';
-import ProductDetail from '../Screens/Products/ProductDetail';
-import ProductsScreen from '../Screens/Products/ProductsScreen';
+import Checkout from '../Screens/Cart/Checkout';
+import CartScreen from '../Screens/Cart/CartScreen';
 
-export type HomeStackParamList = {
-  ProductsScreen: undefined;
-  ProductDetail: { product: Product };
+export type CartStackParamList = {
+  CartScreen: undefined;
+  CartCheckout: undefined;
 };
 
-const Stack = createStackNavigator<HomeStackParamList>();
+const Stack = createStackNavigator<CartStackParamList>();
 
 const LogoTitle = () => {
   return (
@@ -24,7 +24,7 @@ const LogoTitle = () => {
   );
 };
 
-const HomeNavigator = () => {
+const CartNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -32,13 +32,10 @@ const HomeNavigator = () => {
         headerBackTitle: 'Back',
       }}
     >
-      <Stack.Screen
-        name="ProductsScreen"
-        component={ProductsScreen}
-      />
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="CartScreen" component={CartScreen} />
+      <Stack.Screen name="CartCheckout" component={Checkout} />
     </Stack.Navigator>
   );
 };
 
-export default HomeNavigator;
+export default CartNavigator;

@@ -14,20 +14,22 @@ import Text from './Text';
 import { Theme } from '../../util/theme';
 
 const restyleFunctions = [spacing, border, backgroundColor];
+
 type Props = SpacingProps<Theme> &
   BorderProps<Theme> &
   BackgroundColorProps<Theme> & {
     onPress: () => void;
     label: string;
+    variant?: any;
   };
 
-const Button = ({ onPress, label, ...rest }: Props) => {
+const Button = ({ onPress, label, variant, ...rest }: Props) => {
   const props = useRestyle(restyleFunctions, rest);
 
   return (
     <TouchableOpacity onPress={onPress}>
       <View {...props}>
-        <Text variant="secondaryButtonLabel">{label}</Text>
+        <Text variant={variant || 'successButtonLabel'}>{label}</Text>
       </View>
     </TouchableOpacity>
   );
