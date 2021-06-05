@@ -1,37 +1,43 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Image, FlatList } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import Box from '../../Components/restyle/Box';
 import Text from '../../Components/restyle/Text';
+import { ProductsScreenNavigationProp } from './ProductsScreen';
 
 interface Props {
   productsFiltered: Product[];
+  navigation: ProductsScreenNavigationProp;
 }
 
 const SearchedProducts = (props: Props) => {
-  const { productsFiltered } = props;
+  const { navigation, productsFiltered } = props;
 
   const renderItem = ({ item }: { item: Product }) => (
-    <Box
-      backgroundColor="cardPrimaryBackground"
-      flexDirection="row"
-      marginTop="s"
-      borderRadius={10}
+    <TouchableOpacity
+      onPress={() => navigation.navigate('ProductDetail', { product: item })}
     >
-      <Box>
-        {item.image ? (
-          <Image source={{ uri: item.image }} />
-        ) : (
-          <Image
-            style={styles.thumbnail}
-            source={require('../../assets/placeholder.jpeg')}
-          />
-        )}
+      <Box
+        backgroundColor="cardPrimaryBackground"
+        flexDirection="row"
+        marginTop="s"
+        borderRadius={10}
+      >
+        <Box>
+          {item.image ? (
+            <Image source={{ uri: item.image }} />
+          ) : (
+            <Image
+              style={styles.thumbnail}
+              source={require('../../assets/placeholder.jpeg')}
+            />
+          )}
+        </Box>
+        <Box padding="s">
+          <Text variant="title">{item.name}</Text>
+          <Text variant="body">{item.description}</Text>
+        </Box>
       </Box>
-      <Box padding="s">
-        <Text variant="title">{item.name}</Text>
-        <Text variant="body">{item.description}</Text>
-      </Box>
-    </Box>
+    </TouchableOpacity>
   );
 
   return (

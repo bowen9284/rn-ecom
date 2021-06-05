@@ -1,14 +1,19 @@
 import React from 'react';
-import ProductContainer from './Screens/Products/ProductContainer';
 import { ThemeProvider } from '@shopify/restyle';
 import theme from './util/theme';
-import Header from './Shared/Header';
+import { NavigationContainer } from '@react-navigation/native';
+import MainNavigator from './Navigators/MainNavigator';
+import { Provider } from 'react-redux';
+import store from './Redux/store';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <ProductContainer />
+      <Provider store={store}>
+        <NavigationContainer>
+          <MainNavigator />
+        </NavigationContainer>
+      </Provider>
     </ThemeProvider>
   );
 }

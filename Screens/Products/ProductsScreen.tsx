@@ -1,53 +1,47 @@
-import theme, { Theme } from '../../util/theme';
-import { createBox } from '@shopify/restyle';
 import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  TextInput,
-  Pressable,
-} from 'react-native';
-import Text from '../../Components/restyle/Text';
+import { StyleSheet, TextInput, Pressable } from 'react-native';
 import Box from '../../Components/restyle/Box';
 import ProductList from './ProductList';
-import { Container, Header, Icon, Item, Input } from 'native-base';
 import SearchedProducts from './SearchedProducts';
 import { EvilIcons } from '@expo/vector-icons';
 import CategoryFilter from './CategoryFilter';
-import { select } from '@storybook/addon-knobs';
-import usePrevious from '../../hooks/usePrevious';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { HomeStackParamList } from '../../Navigators/HomeNavigator';
 
-const mockProducts: Product[] = require('../../assets/mockData/products.json');
-const mockCategories: Category[] = require('../../assets/mockData/categories.json');
+// mock data
+import mockProducts from '../../assets/mockData/products.json';
+import mockCategories from '../../assets/mockData/categories.json';
+import { RouteProp } from '@react-navigation/native';
 
-const ProductContainer = () => {
+export type ProductsScreenNavigationProp = StackNavigationProp<
+  HomeStackParamList,
+  'ProductsScreen'
+>;
+
+type ProductsScreenRouteProp = RouteProp<HomeStackParamList, 'ProductsScreen'>;
+
+interface Props {
+  navigation: ProductsScreenNavigationProp;
+  route: ProductsScreenRouteProp;
+}
+
+const ProductsScreen = (props: Props) => {
+  const { navigation } = props;
+
+  const [initialState, setInitialState] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
   const [focus, setFocus] = useState<boolean>();
-
   const [active, setActive] = useState<number>(-1);
-
-  const [initialState, setInitialState] = useState<Product[]>([]);
 
   useEffect(() => {
     setProducts(mockProducts);
-
     setProductsFiltered(mockProducts);
     setFocus(false);
     setCategories(mockCategories);
     setActive(-1);
     setInitialState(mockProducts);
-
-    return () => {
-      setProducts([]);
-      setProductsFiltered([]);
-      setCategories([]);
-      setFocus(false);
-      setActive(-1);
-      setInitialState([]);
-    };
   }, []);
 
   const searchProduct = (text: string) => {
@@ -97,23 +91,26 @@ const ProductContainer = () => {
           autoCorrect={false}
         />
         {focus === true ? (
-          <Pressable onPress={() => closeList()}>
+          <Pressable android_ripple onPress={() => closeList()}>
             <EvilIcons name="close" size={20} color="black" />
           </Pressable>
         ) : null}
       </Box>
       {focus ? (
-        <SearchedProducts productsFiltered={productsFiltered} />
+        <SearchedProducts
+          productsFiltered={productsFiltered}
+          navigation={navigation}
+        />
       ) : (
         <>
           <CategoryFilter
-            categories={mockCategories}
+            categories={categories}
             onCategoryFilter={filterByCategory}
             active={active}
             setActive={setActive}
           />
           <Box flex={1} alignItems="center">
-            <ProductList items={products} />
+            <ProductList items={products} navigation={navigation} />
           </Box>
         </>
       )}
@@ -136,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductContainer;
+export default ProductsScreen;

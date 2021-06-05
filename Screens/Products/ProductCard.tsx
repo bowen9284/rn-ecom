@@ -1,22 +1,28 @@
 import React from 'react';
-import { StyleSheet, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, Image, Dimensions } from 'react-native';
 import Text from '../../Components/restyle/Text';
+import Box from '../../Components/restyle/Box';
 import Button from '../../Components/restyle/Button';
+import { useAppDispatch } from '../../hooks/redux';
+import { addToCart } from '../../Redux/Slices/cartSlice';
+import Card from '../../Components/restyle/Card';
+import { formatPrice } from '../../util/currency';
 
 let { width } = Dimensions.get('window');
 
 interface Props {
-  name: string;
-  price: number;
-  image: string;
-  countInStock: number;
+  product: Product;
 }
 
 const ProductCard = (props: Props) => {
-  const { name, price, image, countInStock } = props;
+  const { product } = props;
+  const { name, price, countInStock, image } = product;
+  const dispatch = useAppDispatch();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.image}>
+    <Card style={styles.container} alignItems="center" margin="s" padding="s">
+      <Box style={styles.image}>
+        {/* @TODO extract uri + fallback local image to shared logic */}
         {image != '' ? (
           <Image
             resizeMode="contain"
@@ -30,19 +36,25 @@ const ProductCard = (props: Props) => {
             style={styles.image}
           />
         )}
-      </View>
+      </Box>
       <Text variant="title">
         {name.length > 15 ? name.substring(0, 15 - 3) + '...' : name}
       </Text>
-      <Text variant="body">${price}</Text>
+      <Text variant="body">{formatPrice(price)}</Text>
+
       {countInStock > 0 ? (
-        <View style={{ marginBottom: 10 }}>
-          <Button onPress={() => {}} label="Add" />
-        </View>
+        <Box style={{ marginBottom: 10 }}>
+          <Button
+            onPress={() => {
+              dispatch(addToCart(product));
+            }}
+            label="Add"
+          />
+        </Box>
       ) : (
         <Text>Currently Unavailable</Text>
       )}
-    </View>
+    </Card>
   );
 };
 
@@ -52,10 +64,7 @@ const styles = StyleSheet.create({
   container: {
     height: 225,
     width: 160,
-    padding: 5,
     borderRadius: 10,
-    margin: 10,
-    alignItems: 'center',
     elevation: 5,
     backgroundColor: 'white',
   },
@@ -65,6 +74,5 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    backgroundColor: 'transparent',
   },
 });
