@@ -1,9 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
+import { render } from '../../jest/setup';
+import store from '../../Redux/store';
 import CartScreen from '../../Screens/Cart/CartScreen';
 
-describe('<CartScreen />', () => {
-  it('has 1 child', () => {
-    const tree = renderer.create(<CartScreen />).toJSON();
-  });
+test('<CartScreen />', () => {
+  const navigation = { navigate: jest.fn() };
+
+  render(
+    <Provider store={store}>
+      <CartScreen navigation={navigation} />
+    </Provider>
+  );
 });

@@ -1,10 +1,8 @@
 import React from 'react';
+import { render } from '../../jest/setup';
 import AdminScreen from '../../Screens/Admin/AdminScreen';
-import renderer from 'react-test-renderer';
 
-describe('<AdminScreen />', () => {
-    it('has 1 child', () => {
-      const tree = renderer.create(<AdminScreen />).toJSON();
-      expect(tree.children.length).toBe(1);
-    });
-  });
+test('<AdminScreen />', () => {
+  const tree = render(<AdminScreen />).toJSON();
+  expect(tree.children.length).toBe(1);
+});
