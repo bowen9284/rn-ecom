@@ -25,12 +25,14 @@ const ProductCard = (props: Props) => {
         {/* @TODO extract uri + fallback local image to shared logic */}
         {image != '' ? (
           <Image
+            testID="card-remote-image"
             resizeMode="contain"
             source={{ uri: image }}
             style={styles.image}
           />
         ) : (
           <Image
+            testID="card-local-image"
             resizeMode="contain"
             source={require('../../assets/placeholder.jpeg')}
             style={styles.image}

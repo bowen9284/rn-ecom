@@ -14,30 +14,17 @@ const ProductListItem = (props: Props) => {
 
   return (
     <Box testID={`product-` + item.id}>
-      {Platform.OS === 'ios' ? (
-        <TouchableOpacity
-          testID="ios"
-          onPress={() =>
-            navigation.navigate('ProductDetail', {
-              product: item,
-            })
-          }
-        >
-          <ProductCard key={item.name} product={item} />
-        </TouchableOpacity>
-      ) : (
-        <Pressable
-          testID="android"
-          android_ripple={{ color: '#8C6FF7', borderless: true }}
-          onPress={() =>
-            navigation.navigate('ProductDetail', {
-              product: item,
-            })
-          }
-        >
-          <ProductCard key={item.name} product={item} />
-        </Pressable>
-      )}
+      <Pressable
+        testID={`product-pressable-` + item.id}
+        android_ripple={{ color: '#8C6FF7', borderless: true }}
+        onPress={() =>
+          navigation.navigate('ProductDetail', {
+            product: item,
+          })
+        }
+      >
+        <ProductCard key={item.name} product={item} />
+      </Pressable>
     </Box>
   );
 };
