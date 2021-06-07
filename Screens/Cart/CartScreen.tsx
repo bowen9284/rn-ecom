@@ -1,3 +1,5 @@
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -5,19 +7,32 @@ import Box from '../../Components/restyle/Box';
 import Button from '../../Components/restyle/Button';
 import Text from '../../Components/restyle/Text';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { CartStackParamList } from '../../Navigators/CartNavigator';
 import { clearCart, removeFromCart } from '../../Redux/Slices/cartSlice';
 import { formatPrice } from '../../util/currency';
 
-const CartScreen = () => {
-  const cart = useAppSelector((state) => state.cart);
+export type CartScreenNavigationProp = StackNavigationProp<
+  CartStackParamList,
+  'CartScreen'
+>;
 
+type CartScreenRouteProp = RouteProp<CartStackParamList, 'CartScreen'>;
+
+interface Props {
+  navigation: CartScreenNavigationProp;
+  route: CartScreenRouteProp;
+}
+
+const CartScreen = (props: Props) => {
+  const { navigation } = props;
+  const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   return (
     <Box flex={1} marginHorizontal="m" marginVertical="s">
       {cart.items.length ? (
         <>
-          <ScrollView>
+          <ScrollView style={{ height: '85%' }}>
             <Box flex={1}>
               {cart.items.map((item: any, index: number) => {
                 return (
@@ -63,12 +78,13 @@ const CartScreen = () => {
               justifyContent="space-between"
               alignItems="flex-end"
             >
+              <Text variant="title">{formatPrice(cart.totalPrice)}</Text>
+
               <Button
-                variant="dangerButtonLabel"
-                label="Remove Items"
+                label="Clear cart"
                 onPress={() => dispatch(clearCart())}
               />
-              <Text variant="body">Total {formatPrice(cart.totalPrice)}</Text>
+              <Button label="Checkout" onPress={() => {navigation.navigate('CartCheckout')}} />
             </Box>
           </Box>
         </>

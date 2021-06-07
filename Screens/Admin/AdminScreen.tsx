@@ -1,16 +1,14 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-interface Props {
-    
-}
+interface Props {}
 
-const AdminScreen = (props: Props) => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
+const AdminScreen = () => {
+  return (
+    <View>
+      <Text></Text>
+    </View>
+  );
+};
 
-export default AdminScreen
+export default AdminScreen;

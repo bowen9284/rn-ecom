@@ -73,6 +73,11 @@ const theme = createTheme({
       lineHeight: 24,
       color: 'lightText',
     },
+    defaultButtonLabel: {
+      fontSize: 16,
+      lineHeight: 24,
+      color: 'buttonPrimaryBackground',
+    },
     successButtonLabel: {
       fontSize: 16,
       lineHeight: 24,

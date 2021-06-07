@@ -6,6 +6,7 @@ import UserScreen from '../Screens/User/UserScreen';
 import AdminScreen from '../Screens/Admin/AdminScreen';
 import HomeNavigator from './HomeNavigator';
 import CartNavigator from './CartNavigator';
+import { useAppSelector } from '../hooks/redux';
 
 type RootTabParamList = {
   Home: undefined;
@@ -17,6 +18,8 @@ type RootTabParamList = {
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const MainNavigator = () => {
+  const cart = useAppSelector((state) => state.cart);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -43,6 +46,7 @@ const MainNavigator = () => {
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="shoppingcart" size={size} color={color} />
           ),
+          tabBarBadge: cart.items.length || undefined,
         }}
       />
       <Tab.Screen
