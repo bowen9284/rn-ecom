@@ -18,9 +18,7 @@
     "setupFiles": [
       "<rootDir>/jest/setup.tsx"
     ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/__mocks__/globalMock.js"
-    ]
+    "setupFilesAfterEnv": []
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",

@@ -1,9 +1,9 @@
 [
   {
     "id": "5f15d8852a025143f9593a7c",
-    "image": "https://lh3.googleusercontent.com/proxy/PHMeEUxncFvxo71Hbw80j6G8IEv8CHaKUPMbfIAU_XfRTkc-S72ohLqMtiU0Ch-yZG9flgxaK1VXh0W4aIzZawc1Z2Yi",
+    "image": "",
     "brand": "PS3",
-    "price": 250.00,
+    "price": 250.0,
     "rating": 1,
     "numReviews": 0,
     "isFeatured": true,
@@ -20,7 +20,7 @@
     "id": "5f15d92ee520d44421ed8e9b",
     "image": "",
     "brand": "IKEA",
-    "price": 350.90,
+    "price": 350.9,
     "rating": 5,
     "numReviews": 0,
     "isFeatured": true,
@@ -37,7 +37,7 @@
     "id": "5f15d964e520d44421ed8e9c",
     "image": "",
     "brand": "OBI",
-    "price": 1350.90,
+    "price": 1350.9,
     "rating": 5,
     "numReviews": 0,
     "isFeatured": true,
@@ -54,7 +54,7 @@
     "id": "5f15d9b3e520d44421ed8e9d",
     "image": "https://static1.squarespace.com/static/5a51022ff43b55247f47ccfc/5a567854f9619a96fd6233bb/5b74446c40ec9afbc633e555/1534346950637/Husqvarna+545FR+%282%29.png?format=1500w",
     "brand": "OBI",
-    "price": 490.90,
+    "price": 490.9,
     "rating": 5,
     "numReviews": 0,
     "isFeatured": true,
@@ -71,7 +71,7 @@
     "id": "5f15da13e520d44421ed8e9e",
     "image": "https://lh3.googleusercontent.com/proxy/ZqRo12bOfeU7xg7mTMfgENdMop_Zl9srLYDKeFilLCZkych8UO4ldDlRzT-8q5scq35krZsqxprZA85RdGLEVvejnPY4RRfNZ1eXDUJRoqHHRWBB5iMCx7UxT4l6iA",
     "brand": "Mobilix",
-    "price": 1000.00,
+    "price": 1000.0,
     "rating": 5,
     "numReviews": null,
     "isFeatured": true,
@@ -82,6 +82,23 @@
       "id": "5f15d5b2cb4a6642bddc0fe7"
     },
     "countInStock": 2,
+    "__v": 0
+  },
+  {
+    "id": "5f15da13e520d44431ed8e34",
+    "image": "http://mobileimages.lowes.com/product/converted/885911/885911450706.jpg",
+    "brand": "DeWalt",
+    "price": 400.0,
+    "rating": 5,
+    "numReviews": null,
+    "isFeatured": true,
+    "name": "Chop Saw with a long name",
+    "description": "Big saw for cutting",
+    "category": {
+      "$oid": "5f15d5b2cb4a6642bddc0fe7",
+      "id": "5f15d5b2cb4a6642bddc0fe7"
+    },
+    "countInStock": 0,
     "__v": 0
   }
 ]

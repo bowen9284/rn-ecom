@@ -1,39 +1,42 @@
 import React from 'react';
-import { render, waitFor } from '../../../jest/setup';
+import { fireEvent, render } from '../../../jest/setup';
 
 import fakeProducts from '../../../assets/mockData/products.json';
 import ProductListItem from '../../../Screens/Products/ProductListItem';
 
-const navigationProp: any = jest.fn();
-const fakeProductsProp: any = fakeProducts;
+const mockNavigation: any = {
+  navigate: jest.fn(),
+};
+
 const firstProduct: any = fakeProducts[0];
 
+//@todo determine a way to test ios versus android when conditions exist
 test('<ProductListItem /> Android Config', () => {
   const component = render(
-    <ProductListItem navigation={navigationProp} item={firstProduct} />
+    <ProductListItem navigation={mockNavigation} item={firstProduct} />
   ).toJSON();
 
   const children = component?.children;
-  expect(component!.children!.length).toBe(1);
+  expect(children!.length).toBe(1);
 });
 
 test('<ProductListItem /> iOS Config', () => {
   const component = render(
-    <ProductListItem navigation={navigationProp} item={firstProduct} />
+    <ProductListItem navigation={mockNavigation} item={firstProduct} />
   ).toJSON();
 
   const children = component?.children;
-
-  expect(component!.children!.length).toBe(1);
+  expect(children!.length).toBe(1);
 });
 
-test('<ProductListItem /> ', async () => {
+test('press product navigates to product detail', async () => {
   const { getByTestId } = render(
-    <ProductListItem navigation={navigationProp} item={firstProduct} />
+    <ProductListItem navigation={mockNavigation} item={firstProduct} />
   );
 
-  const component = getByTestId(`product-${firstProduct.id}`);
-  await waitFor(() => expect(component).toBeTruthy());
-});
+  fireEvent.press(getByTestId(`product-pressable-${firstProduct.id}`));
 
-//@todo determine a way to test ios versus android when conditions exist
+  expect(mockNavigation.navigate).toBeCalledWith('ProductDetail', {
+    product: firstProduct,
+  });
+});
