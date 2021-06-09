@@ -5,7 +5,7 @@ import {
   VariantProps,
 } from '@shopify/restyle';
 import { Theme } from '../../util/theme';
-import Box from './Box';
+import { Box } from './Restyle';
 
 type Props = SpacingProps<Theme> & VariantProps<Theme, 'cardVariants'>;
 

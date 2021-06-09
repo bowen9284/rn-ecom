@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import Box from '../../Components/restyle/Box';
-import Text from '../../Components/restyle/Text';
+import { Text, Box } from '../../Components/restyle/Restyle';
 import { ProductsScreenNavigationProp } from './ProductsScreen';
 
 interface Props {

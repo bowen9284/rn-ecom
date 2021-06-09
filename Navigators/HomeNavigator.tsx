@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image } from 'react-native';
-import Box from '../Components/restyle/Box';
+import { Box } from '../Components/restyle/Restyle';
 import ProductDetail from '../Screens/Products/ProductDetail';
 import ProductsScreen from '../Screens/Products/ProductsScreen';
 
@@ -32,10 +32,7 @@ const HomeNavigator = () => {
         headerBackTitle: 'Back',
       }}
     >
-      <Stack.Screen
-        name="ProductsScreen"
-        component={ProductsScreen}
-      />
+      <Stack.Screen name="ProductsScreen" component={ProductsScreen} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   );

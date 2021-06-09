@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TextInput, Pressable } from 'react-native';
-import Box from '../../Components/restyle/Box';
 import ProductList from './ProductList';
 import SearchedProducts from './SearchedProducts';
 import { EvilIcons } from '@expo/vector-icons';
@@ -12,6 +11,7 @@ import { HomeStackParamList } from '../../Navigators/HomeNavigator';
 import mockProducts from '../../assets/mockData/products.json';
 import mockCategories from '../../assets/mockData/categories.json';
 import { RouteProp } from '@react-navigation/native';
+import { Box } from '../../Components/restyle/Restyle';
 
 export type ProductsScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,

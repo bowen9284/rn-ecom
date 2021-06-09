@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, Dimensions } from 'react-native';
-import Text from '../../Components/restyle/Text';
-import Box from '../../Components/restyle/Box';
+import { Text, Box } from '../../Components/restyle/Restyle';
 import Button from '../../Components/restyle/Button';
 import { useAppDispatch } from '../../hooks/redux';
 import { addToCart } from '../../Redux/Slices/cartSlice';

@@ -3,9 +3,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Box from '../../Components/restyle/Box';
 import Button from '../../Components/restyle/Button';
-import Text from '../../Components/restyle/Text';
+import { Text, Box } from '../../Components/restyle/Restyle';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { CartStackParamList } from '../../Navigators/CartNavigator';
 import { clearCart, removeFromCart } from '../../Redux/Slices/cartSlice';
@@ -13,10 +12,10 @@ import { formatPrice } from '../../util/currency';
 
 export type CartScreenNavigationProp = StackNavigationProp<
   CartStackParamList,
-  'CartScreen'
+  'Cart'
 >;
 
-type CartScreenRouteProp = RouteProp<CartStackParamList, 'CartScreen'>;
+type CartScreenRouteProp = RouteProp<CartStackParamList, 'Cart'>;
 
 interface Props {
   navigation: CartScreenNavigationProp;
@@ -84,7 +83,12 @@ const CartScreen = (props: Props) => {
                 label="Clear cart"
                 onPress={() => dispatch(clearCart())}
               />
-              <Button label="Checkout" onPress={() => {navigation.navigate('CartCheckout')}} />
+              <Button
+                label="Checkout"
+                onPress={() => {
+                  navigation.navigate('CartCheckout');
+                }}
+              />
             </Box>
           </Box>
         </>

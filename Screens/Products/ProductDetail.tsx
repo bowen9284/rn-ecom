@@ -2,9 +2,8 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { ScrollView, Image, StyleSheet } from 'react-native';
-import Box from '../../Components/restyle/Box';
 import Button from '../../Components/restyle/Button';
-import Text from '../../Components/restyle/Text';
+import { Text, Box } from '../../Components/restyle/Restyle';
 import { useAppDispatch } from '../../hooks/redux';
 
 import { HomeStackParamList } from '../../Navigators/HomeNavigator';
