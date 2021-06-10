@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import { Text, Box } from '../../Components/restyle/Restyle';
+import { Text, Box } from '../../Shared/Restyle/Restyle';
 import { ProductsScreenNavigationProp } from './ProductsScreen';
 
 interface Props {
-  productsFiltered: Product[];
+  productsFiltered: Product[] | [];
   navigation: ProductsScreenNavigationProp;
 }
 
@@ -41,7 +41,7 @@ const SearchedProducts = (props: Props) => {
 
   return (
     <Box flex={1} paddingHorizontal="m" backgroundColor="mainBackground">
-      {productsFiltered.length > 0 ? (
+      {productsFiltered && productsFiltered.length > 0 ? (
         <FlatList
           data={productsFiltered}
           renderItem={renderItem}

@@ -27,7 +27,7 @@ const theme = createTheme({
     buttonRed: palette.red,
     mainText: palette.black,
     lightText: palette.white,
-    borderPrimary: palette.black,
+    borderPrimary: palette.gray,
   },
   spacing: {
     s: 8,

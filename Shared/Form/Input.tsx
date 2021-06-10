@@ -1,6 +1,6 @@
 import React from 'react';
 import { KeyboardTypeOptions, TextInput, StyleSheet } from 'react-native';
-import { Text, Box } from '../../Components/restyle/Restyle';
+import { Text, Box } from '../Restyle/Restyle';
 
 interface Props {
   placeholder: string;
@@ -33,7 +33,7 @@ const Input = (props: Props) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 60,
+    height: 50,
     borderWidth: 2,
     borderColor: 'orange',
     padding: 10,

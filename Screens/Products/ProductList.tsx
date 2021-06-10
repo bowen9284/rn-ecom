@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { ActivityIndicator, FlatList } from 'react-native';
 import ProductListItem from './ProductListItem';
 import { ProductsScreenNavigationProp } from './ProductsScreen';
 
@@ -10,6 +10,11 @@ interface Props {
 
 const ProductList = (props: Props) => {
   const { items, navigation } = props;
+
+  if (!items) {
+    return <ActivityIndicator />;
+  }
+  
   return (
     <FlatList
       testID="product-list"

@@ -1,12 +1,22 @@
-import thunkMiddleware from 'redux-thunk';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import cartItemsReducer from './Slices/cartSlice';
+import { productApi } from '../Services/productApi';
+import { orderApi } from '../Services/orderApi';
+import { categoryApi } from '../Services/categoryApi';
 
 const store = configureStore({
   reducer: {
     cart: cartItemsReducer,
+    [productApi.reducerPath]: productApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer,
   },
-  middleware: [thunkMiddleware],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      productApi.middleware,
+      orderApi.middleware,
+      categoryApi.middleware
+    ),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

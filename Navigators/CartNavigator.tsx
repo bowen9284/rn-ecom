@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image } from 'react-native';
-import { Box } from '../Components/restyle/Restyle';
+import { Box } from '../Shared/Restyle/Restyle';
 import CartScreen from '../Screens/Cart/CartScreen';
 import CheckoutNavigator from './CheckoutNavigator';
 

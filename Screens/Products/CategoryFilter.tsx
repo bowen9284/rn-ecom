@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView, TouchableOpacity } from 'react-native';
-import { Text, Box } from '../../Components/restyle/Restyle';
+import { ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, Box } from '../../Shared/Restyle/Restyle';
 
 interface Props {
   categories: Category[];
@@ -11,6 +11,10 @@ interface Props {
 
 const CategoryFilter = (props: Props) => {
   const { active, categories, setActive, onCategoryFilter } = props;
+
+  if (!categories) {
+    return <ActivityIndicator />;
+  }
 
   return (
     <Box>

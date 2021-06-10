@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Pressable, TouchableOpacity } from 'react-native';
-import { Box } from '../../Components/restyle/Restyle';
+import { Box } from '../../Shared/Restyle/Restyle';
 import ProductCard from './ProductCard';
 import { ProductsScreenNavigationProp } from './ProductsScreen';
 

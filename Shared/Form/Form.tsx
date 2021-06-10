@@ -1,6 +1,6 @@
 import React, { ReactChild, ReactChildren } from 'react';
 import { ScrollView } from 'react-native';
-import { Text, Box } from '../../Components/restyle/Restyle';
+import { Text, Box } from '../Restyle/Restyle';
 
 interface Props {
   title: string;
@@ -13,7 +13,7 @@ const Form = (props: Props) => {
     <Box
       justifyContent="center"
       alignItems="center"
-      marginVertical="s"
+      marginTop="s"
     >
       <ScrollView>
         <Text variant="title">{title}</Text>

@@ -5,9 +5,10 @@ import ConfirmScreen from '../Screens/Cart/ConfirmScreen';
 import PaymentScreen from '../Screens/Cart/PaymentScreen';
 
 export type CheckoutTabParamList = {
+  Cart: undefined;
   Shipping: undefined;
-  Payment: undefined;
-  Confirm: undefined;
+  Payment: { order: Order };
+  Confirm: { order: Order };
 };
 
 const Tab = createMaterialTopTabNavigator<CheckoutTabParamList>();

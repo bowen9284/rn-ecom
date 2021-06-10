@@ -6,12 +6,10 @@ import { EvilIcons } from '@expo/vector-icons';
 import CategoryFilter from './CategoryFilter';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { HomeStackParamList } from '../../Navigators/HomeNavigator';
-
-// mock data
-import mockProducts from '../../assets/mockData/products.json';
-import mockCategories from '../../assets/mockData/categories.json';
+import { useGetAllProductsQuery } from '../../Services/productApi';
 import { RouteProp } from '@react-navigation/native';
-import { Box } from '../../Components/restyle/Restyle';
+import { Box } from '../../Shared/Restyle/Restyle';
+import { useGetAllCategoriesQuery } from '../../Services/categoryApi';
 
 export type ProductsScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
@@ -31,20 +29,40 @@ const ProductsScreen = (props: Props) => {
   const [initialState, setInitialState] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
+
+  const [productsFiltered, setProductsFiltered] = useState<
+    Product[] | undefined
+  >([]);
+
   const [focus, setFocus] = useState<boolean>();
   const [active, setActive] = useState<number>(-1);
 
+  const {
+    data: fetchedProducts,
+    error: productsError,
+    isLoading: productsIsLoading,
+  } = useGetAllProductsQuery();
+
+  const {
+    data: fetchedCategories,
+    error: categoriesError,
+    isLoading: categoriesIsLoading,
+  } = useGetAllCategoriesQuery();
+
   useEffect(() => {
-    setProducts(mockProducts);
-    setProductsFiltered(mockProducts);
+    setProducts(fetchedProducts);
+    setProductsFiltered(fetchedProducts);
     setFocus(false);
-    setCategories(mockCategories);
+    setCategories(fetchedCategories);
     setActive(-1);
-    setInitialState(mockProducts);
+    setInitialState(fetchedProducts);
   }, []);
 
   const searchProduct = (text: string) => {
+    if (!products) {
+      return;
+    }
+
     setProductsFiltered(
       products.filter((product) =>
         product.name.toLowerCase().includes(text.toLowerCase())
@@ -61,6 +79,10 @@ const ProductsScreen = (props: Props) => {
   };
 
   const filterByCategory = (category: Category, okActive: number) => {
+    if (!initialState) {
+      return;
+    }
+
     if (okActive === -1) {
       setProducts(initialState);
       return;

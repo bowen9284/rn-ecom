@@ -3,8 +3,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Button from '../../Components/restyle/Button';
-import { Text, Box } from '../../Components/restyle/Restyle';
+import Button from '../../Shared/Restyle/Button';
+import { Text, Box } from '../../Shared/Restyle/Restyle';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { CartStackParamList } from '../../Navigators/CartNavigator';
 import { clearCart, removeFromCart } from '../../Redux/Slices/cartSlice';
@@ -33,9 +33,9 @@ const CartScreen = (props: Props) => {
         <>
           <ScrollView style={{ height: '85%' }}>
             <Box flex={1}>
-              {cart.items.map((item: any, index: number) => {
+              {cart.items.map((item: any) => {
                 return (
-                  <Box key={index} flexDirection="row">
+                  <Box key={item.id} flexDirection="row">
                     {item.image != '' ? (
                       <Image
                         resizeMode="center"
