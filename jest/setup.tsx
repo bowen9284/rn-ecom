@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler/jestSetup';
+import 'isomorphic-fetch';
 
 import React, { FC, ReactElement } from 'react';
 import theme from '../util/theme';

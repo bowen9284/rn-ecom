@@ -30,7 +30,6 @@ const ConfirmScreen = (props: Props) => {
 
   const placeOrder = async () => {
     let result = await addOrder(params.order);
-    console.log(result);
     if (!result.error) {
       dispatch(clearCart());
       navigation.navigate('Cart');

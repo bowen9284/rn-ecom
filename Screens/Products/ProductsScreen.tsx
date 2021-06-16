@@ -127,6 +127,7 @@ const ProductsScreen = (props: Props) => {
         <>
           <CategoryFilter
             categories={categories}
+            categoriesIsLoading={categoriesIsLoading}
             onCategoryFilter={filterByCategory}
             active={active}
             setActive={setActive}

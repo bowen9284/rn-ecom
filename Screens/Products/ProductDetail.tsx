@@ -32,7 +32,7 @@ const ProductDetail = (props: Props) => {
   return (
     <>
       <Box alignItems="center" margin="s">
-        <ScrollView>
+        <ScrollView testID="scrollView">
           <Box>
             {product.image != '' ? (
               <Image

@@ -17,7 +17,9 @@
     ],
     "setupFiles": [
       "<rootDir>/jest/setup.tsx"
-    ]
+    ],
+    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"]
+
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
@@ -58,6 +60,7 @@
     "@storybook/addon-ondevice-knobs": "^5.3.25",
     "@storybook/react-native": "^5.3.25",
     "@storybook/react-native-server": "^5.3.23",
+    "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^26.0.23",
     "@types/react": "~16.9.35",

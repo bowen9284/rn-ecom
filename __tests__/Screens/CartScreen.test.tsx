@@ -4,12 +4,9 @@ import { render } from '../../jest/setup';
 import store from '../../Redux/store';
 import CartScreen from '../../Screens/Cart/CartScreen';
 
-test('<CartScreen />', () => {
-  const navigation = { navigate: jest.fn() };
+const navigation: any = { navigate: jest.fn() };
+const route: any = jest.fn();
 
-  render(
-    <Provider store={store}>
-      <CartScreen navigation={navigation} />
-    </Provider>
-  );
+test('<CartScreen />', () => {
+  render(<CartScreen navigation={navigation} route={route} />);
 });

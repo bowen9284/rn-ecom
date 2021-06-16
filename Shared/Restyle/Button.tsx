@@ -23,12 +23,13 @@ type Props = SpacingProps<Theme> &
     variant?: any;
   };
 
-const Button = ({ onPress, label, variant, ...rest }: Props) => {
-  const props = useRestyle(restyleFunctions, rest);
+const Button = (props: Props) => {
+  const { onPress, label, variant, ...rest } = props;
+  const restyleProps = useRestyle(restyleFunctions, rest);
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <View {...props}>
+      <View {...restyleProps}>
         <Text variant={variant || 'defaultButtonLabel'}>{label}</Text>
       </View>
     </TouchableOpacity>

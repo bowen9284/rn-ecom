@@ -5,23 +5,35 @@ import { Text, Box } from '../../Shared/Restyle/Restyle';
 interface Props {
   categories: Category[];
   active: number;
+  categoriesIsLoading: boolean;
   setActive: (index: number) => void;
   onCategoryFilter: (filterCriteria: Category, active: number) => void;
 }
 
 const CategoryFilter = (props: Props) => {
-  const { active, categories, setActive, onCategoryFilter } = props;
+  const {
+    active,
+    categories,
+    setActive,
+    onCategoryFilter,
+    categoriesIsLoading,
+  } = props;
 
-  if (!categories) {
-    return <ActivityIndicator />;
+  if (categoriesIsLoading && categories) {
+    return <ActivityIndicator testID="activity-indicator" />;
   }
 
   return (
     <Box>
       {categories.length > 0 ? (
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          testID="scrollView"
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
           {categories.map((cat, catIndex) => (
             <TouchableOpacity
+              testID={`category-pressable-${cat.id}`}
               key={catIndex}
               onPress={() => {
                 const isActive =
@@ -42,7 +54,7 @@ const CategoryFilter = (props: Props) => {
                 borderRadius={15}
                 margin="s"
               >
-                <Text variant="buttonLabel">{cat.name}</Text>
+                <Text testID="button-label" variant="buttonLabel">{cat.name}</Text>
               </Box>
             </TouchableOpacity>
           ))}

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, waitFor } from '../../../jest/setup';
 import ProductList from '../../../Screens/Products/ProductList';
 
-import fakeProducts from '../../../assets/mockData/products.json';
+import fakeProducts from '../../mockData/products.json';
 
 const navigationProp: any = jest.fn();
 const fakeProductsProp: any = fakeProducts;

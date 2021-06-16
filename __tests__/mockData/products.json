@@ -8,7 +8,7 @@
     "numReviews": 0,
     "isFeatured": true,
     "name": "FIFA 20",
-    "description": "The most hard FIFA ever",
+    "description": "The latest FIFA",
     "category": {
       "$oid": "5f15d5cdcb4a6642bddc0fe9",
       "id": "5f15d5cdcb4a6642bddc0fe9"
