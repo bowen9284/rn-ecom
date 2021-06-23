@@ -26,11 +26,18 @@ const ConfirmScreen = (props: Props) => {
   const { route, navigation } = props;
   const { params } = route;
   const dispatch = useAppDispatch();
-  const [addOrder, { isLoading }] = useAddOrderMutation();
+  const [addOrder, { isLoading, error, data }] = useAddOrderMutation();
 
   const placeOrder = async () => {
-    let result = await addOrder(params.order);
-    if (!result.error) {
+    await addOrder(params.order);
+
+    // @todo add confirmation
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      console.log('Order was submitted successfully');
       dispatch(clearCart());
       navigation.navigate('Cart');
     }

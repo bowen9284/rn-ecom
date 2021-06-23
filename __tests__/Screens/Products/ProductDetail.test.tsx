@@ -1,8 +1,5 @@
 import React from 'react';
-import thunk from 'redux-thunk';
 import { fireEvent, render } from '../../../jest/setup';
-import { addToCart } from '../../../Redux/Slices/cartSlice';
-import store from '../../../Redux/store';
 import ProductDetail from '../../../Screens/Products/ProductDetail';
 import fakeProducts from '../../mockData/products.json';
 

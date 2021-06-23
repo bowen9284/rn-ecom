@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { HomeStackParamList } from '../../Navigators/HomeNavigator';
 import { addToCart } from '../../Redux/Slices/cartSlice';
 import { formatPrice } from '../../util/currency';
+import ImageWithFallback from '../../Shared/ImageWithFallback';
 
 export type ProductDetailScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
@@ -31,27 +32,13 @@ const ProductDetail = (props: Props) => {
 
   return (
     <>
-      <Box alignItems="center" margin="s">
+      <Box margin="s">
         <ScrollView testID="scrollView">
-          <Box>
-            {product.image != '' ? (
-              <Image
-                resizeMode="contain"
-                source={{ uri: product.image }}
-                style={styles.image}
-              />
-            ) : (
-              <Image
-                resizeMode="contain"
-                source={require('../../assets/placeholder.jpeg')}
-                style={styles.image}
-              />
-            )}
-          </Box>
-          <Box>
-            <Text variant="header">{product.name}</Text>
-            <Text variant="body">{product.description}</Text>
-          </Box>
+          <ImageWithFallback image={product.image} height={250} width="100%" />
+          <Text variant="header" marginBottom="s">
+            {product.name}
+          </Text>
+          <Text variant="body">{product.description}</Text>
         </ScrollView>
       </Box>
       <Box flex={1} justifyContent="flex-end" margin="m">

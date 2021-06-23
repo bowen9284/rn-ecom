@@ -46,7 +46,7 @@ const MainNavigator = () => {
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="shoppingcart" size={size} color={color} />
           ),
-          tabBarBadge: cart.items.length || undefined,
+          tabBarBadge: cart.cartSize || undefined,
         }}
       />
       <Tab.Screen

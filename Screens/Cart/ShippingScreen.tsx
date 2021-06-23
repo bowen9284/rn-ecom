@@ -25,13 +25,13 @@ const ShippingScreen = (props: Props) => {
   const cart = useAppSelector((state) => state.cart);
 
   const [orderItems, setOrderItems] = useState<Product[]>([]);
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState('123 Main street');
   const [address2, setAddress2] = useState('');
-  const [city, setCity] = useState('');
-  const [zip, setZip] = useState<string>('');
-  const [country, setCountry] = useState<string>('');
+  const [city, setCity] = useState('Providence');
+  const [zip, setZip] = useState<string>('55555');
+  const [country, setCountry] = useState<string>('United States');
   const [countries, setCountries] = useState<Country[]>([]);
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('781-777-2323');
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

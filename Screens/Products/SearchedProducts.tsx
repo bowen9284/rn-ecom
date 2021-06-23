@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import ImageWithFallback from '../../Shared/ImageWithFallback';
 import { Text, Box } from '../../Shared/Restyle/Restyle';
 import { ProductsScreenNavigationProp } from './ProductsScreen';
 
 interface Props {
-  productsFiltered: Product[] | [];
+  productsFiltered: Product[];
   navigation: ProductsScreenNavigationProp;
 }
 
@@ -21,17 +22,8 @@ const SearchedProducts = (props: Props) => {
         marginTop="s"
         borderRadius={10}
       >
-        <Box>
-          {item.image ? (
-            <Image source={{ uri: item.image }} />
-          ) : (
-            <Image
-              style={styles.thumbnail}
-              source={require('../../assets/placeholder.jpeg')}
-            />
-          )}
-        </Box>
-        <Box padding="s">
+        <ImageWithFallback image={item.image} width={75} height={75} />
+        <Box padding="s" flexShrink={1}>
           <Text variant="title">{item.name}</Text>
           <Text variant="body">{item.description}</Text>
         </Box>
@@ -49,7 +41,7 @@ const SearchedProducts = (props: Props) => {
         />
       ) : (
         <Box>
-          <Text>No Products found</Text>
+          <Text>No products meet criteria</Text>
         </Box>
       )}
     </Box>
@@ -59,10 +51,6 @@ const SearchedProducts = (props: Props) => {
 export default SearchedProducts;
 
 const styles = StyleSheet.create({
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   thumbnail: {
     height: 75,
     width: 75,

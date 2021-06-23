@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { CartStackParamList } from '../../Navigators/CartNavigator';
 import { clearCart, removeFromCart } from '../../Redux/Slices/cartSlice';
 import { formatPrice } from '../../util/currency';
+import ImageWithFallback from '../../Shared/ImageWithFallback';
 
 export type CartScreenNavigationProp = StackNavigationProp<
   CartStackParamList,
@@ -26,7 +27,6 @@ const CartScreen = (props: Props) => {
   const { navigation } = props;
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-
   return (
     <Box flex={1} marginHorizontal="m" marginVertical="s">
       {cart.items.length ? (
@@ -36,18 +36,7 @@ const CartScreen = (props: Props) => {
               {cart.items.map((item: any) => {
                 return (
                   <Box key={item.id} flexDirection="row">
-                    {item.image != '' ? (
-                      <Image
-                        resizeMode="center"
-                        source={{ uri: item.image }}
-                        style={styles.image}
-                      />
-                    ) : (
-                      <Image
-                        source={require('../../assets/placeholder.jpeg')}
-                        style={styles.image}
-                      />
-                    )}
+                    <ImageWithFallback image={item.image} />
                     <Box
                       flex={1}
                       flexDirection="row"
@@ -55,8 +44,13 @@ const CartScreen = (props: Props) => {
                       justifyContent="space-between"
                       paddingLeft="m"
                     >
-                      <Text variant="body">{item.name}</Text>
+                      <Box flexShrink={1} padding="s">
+                        <Text numberOfLines={1} variant="body">
+                          {item.name}
+                        </Text>
+                      </Box>
                       <Box justifyContent="center" alignItems="flex-end">
+                        <Text variant="body">Qty: {item.quantity}</Text>
                         <Text variant="body">{formatPrice(item.price)}</Text>
                         <Button
                           variant="dangerButtonLabel"

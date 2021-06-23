@@ -5,25 +5,41 @@ export const cartSlice = createSlice({
   initialState: {
     items: [] as Product[],
     totalPrice: 0,
+    cartSize: 0
   },
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
-      state.items.push(action.payload);
+      state.cartSize ++;
 
-      const prices = state.items.map((product) => product.price);
+      let addedItem = state.items.find((cartItem: Product) => cartItem.id === action.payload.id);
+
+      if (addedItem === undefined) {
+        state.items.push(action.payload);
+      } else {
+        addedItem.quantity++;
+      }
+
+      const prices = state.items.map((product) => {
+        return product.price * product.quantity
+      });
 
       state.totalPrice = prices.reduce((total, currentPrice) => {
         return total + currentPrice;
       });
     },
+
     removeFromCart: (state, action: PayloadAction<Product>) => {
       const updatedCart = state.items.filter(
         (cartItem: Product) => cartItem.id !== action.payload.id
       );
+
+      state.cartSize = updatedCart.reduce((total, { quantity }) => total + quantity, 0)
       state.items = updatedCart;
     },
+
     clearCart: (state) => {
       state.items = [];
+      state.cartSize = 0;
     },
   },
 });

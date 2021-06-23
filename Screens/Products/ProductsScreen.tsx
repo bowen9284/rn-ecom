@@ -30,9 +30,7 @@ const ProductsScreen = (props: Props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
 
-  const [productsFiltered, setProductsFiltered] = useState<
-    Product[] | undefined
-  >([]);
+  const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
 
   const [focus, setFocus] = useState<boolean>();
   const [active, setActive] = useState<number>(-1);
@@ -40,23 +38,23 @@ const ProductsScreen = (props: Props) => {
   const {
     data: fetchedProducts,
     error: productsError,
-    isLoading: productsIsLoading,
+    isFetching: productsIsFetching,
   } = useGetAllProductsQuery();
 
   const {
     data: fetchedCategories,
     error: categoriesError,
-    isLoading: categoriesIsLoading,
+    isFetching: categoriesIsFetching,
   } = useGetAllCategoriesQuery();
 
   useEffect(() => {
-    setProducts(fetchedProducts);
-    setProductsFiltered(fetchedProducts);
+    setInitialState(fetchedProducts ?? []);
+    setProducts(fetchedProducts ?? []);
+    setProductsFiltered(fetchedProducts ?? []);
     setFocus(false);
-    setCategories(fetchedCategories);
+    setCategories(fetchedCategories ?? []);
     setActive(-1);
-    setInitialState(fetchedProducts);
-  }, []);
+  }, [fetchedProducts]);
 
   const searchProduct = (text: string) => {
     if (!products) {
@@ -78,12 +76,9 @@ const ProductsScreen = (props: Props) => {
     setFocus(false);
   };
 
-  const filterByCategory = (category: Category, okActive: number) => {
-    if (!initialState) {
-      return;
-    }
-
-    if (okActive === -1) {
+  // -1 indicates a non-filtered state
+  const filterByCategory = (category: Category, activeCategory: number) => {
+    if (activeCategory === -1) {
       setProducts(initialState);
       return;
     }
@@ -98,9 +93,11 @@ const ProductsScreen = (props: Props) => {
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <Box
-        style={styles.searchBar}
+        flexDirection="row"
         padding="s"
         margin="s"
+        borderRadius={5}
+        borderWidth={1}
         backgroundColor="cardPrimaryBackground"
         borderColor="buttonPrimaryBackground"
       >
@@ -113,7 +110,7 @@ const ProductsScreen = (props: Props) => {
           autoCorrect={false}
         />
         {focus === true ? (
-          <Pressable android_ripple onPress={() => closeList()}>
+          <Pressable onPress={() => closeList()}>
             <EvilIcons name="close" size={20} color="black" />
           </Pressable>
         ) : null}
@@ -127,13 +124,19 @@ const ProductsScreen = (props: Props) => {
         <>
           <CategoryFilter
             categories={categories}
-            categoriesIsLoading={categoriesIsLoading}
             onCategoryFilter={filterByCategory}
             active={active}
             setActive={setActive}
+            isFetching={categoriesIsFetching}
+            fetchError={categoriesError}
           />
           <Box flex={1} alignItems="center">
-            <ProductList items={products} navigation={navigation} />
+            <ProductList
+              products={products}
+              navigation={navigation}
+              isFetching={productsIsFetching}
+              fetchError={productsError}
+            />
           </Box>
         </>
       )}
@@ -142,15 +145,6 @@ const ProductsScreen = (props: Props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  searchBar: {
-    borderColor: 'black',
-    borderWidth: 1,
-    flexDirection: 'row',
-    borderRadius: 5,
-  },
   searchInput: {
     flexGrow: 1,
   },

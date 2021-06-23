@@ -5,38 +5,59 @@ import CategoryFilter from '../../../Screens/Products/CategoryFilter';
 
 const setActive: any = jest.fn();
 const onCategoryFilter: any = jest.fn();
+
 const firstFakeCateogry: any = fakeCategories[0];
 
-test('loading categories displays activity indicator', () => {
+test('fetching categories displays activity indicator', () => {
   const categories: any = fakeCategories;
 
   const { getByTestId } = render(
     <CategoryFilter
-      categoriesIsLoading={true}
       active={-1}
       categories={categories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
+      isFetching={true}
+      fetchError={undefined}
     />
   );
 
   expect(getByTestId('activity-indicator'));
 });
 
-test('Empty Categories displays No Products Found', () => {
+test('fetching categories error displays "There was an error fetching categories."', () => {
+  const categories: any = fakeCategories;
+  const fetchError: any = jest.fn();
+
+  const { getByText } = render(
+    <CategoryFilter
+      active={-1}
+      categories={categories}
+      setActive={setActive}
+      onCategoryFilter={onCategoryFilter}
+      isFetching={false}
+      fetchError={fetchError}
+    />
+  );
+
+  expect(getByText('There was an error fetching categories.'));
+});
+
+test('Empty Categories displays No Products found that match category.', () => {
   const emptyCategories = [] as any[];
 
   const { getByText } = render(
     <CategoryFilter
-      categoriesIsLoading={false}
       active={-1}
       categories={emptyCategories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
+      isFetching={false}
+      fetchError={undefined}
     />
   );
 
-  expect(getByText('No Products found'));
+  expect(getByText('No Products found that match category.'));
 });
 
 test('<CategoryFilter> ScrollView config', () => {
@@ -44,11 +65,12 @@ test('<CategoryFilter> ScrollView config', () => {
 
   const { getByTestId } = render(
     <CategoryFilter
-      categoriesIsLoading={false}
       active={-1}
       categories={categories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
+      isFetching={false}
+      fetchError={undefined}
     />
   );
   expect(getByTestId('scrollView'));
@@ -63,11 +85,12 @@ test('<CategoryFilter> ScrollView config', () => {
 test('<CategoryFilter> onPress filters products and is active', () => {
   const { getByTestId } = render(
     <CategoryFilter
-      categoriesIsLoading={false}
       active={-1}
       categories={[firstFakeCateogry]}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
+      isFetching={false}
+      fetchError={undefined}
     />
   );
 

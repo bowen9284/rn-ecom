@@ -10,4 +10,5 @@ interface Product {
   description: string;
   category: Category;
   countInStock: number;
+  quantity: number;
 }
