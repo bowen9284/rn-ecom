@@ -2,10 +2,10 @@ import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tab
 import { RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Text, Box } from '../../Shared/Restyle/Restyle';
+import { Text, Box } from '../../Components/Restyle/Restyle';
 import { CheckoutTabParamList } from '../../Navigators/CheckoutNavigator';
 import { Feather } from '@expo/vector-icons';
-import TabAdvanceButton from '../../Shared/Form/TabAdvanceButton';
+import TabAdvanceButton from '../../Components/Form/TabAdvanceButton';
 
 type PaymentScreenNavigationProp = MaterialTopTabNavigationProp<
   CheckoutTabParamList,

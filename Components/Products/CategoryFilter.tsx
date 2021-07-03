@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
-import { Text, Box } from '../../Shared/Restyle/Restyle';
+import { Text, Box } from '../Restyle/Restyle';
 
 interface Props {
   categories: Category[];

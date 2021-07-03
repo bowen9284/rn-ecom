@@ -1,8 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
 import ProductListItem from './ProductListItem';
-import { ProductsScreenNavigationProp } from './ProductsScreen';
-import { Text } from '../../Shared/Restyle/Restyle';
+import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
+import { Text } from '../Restyle/Restyle';
 
 interface Props {
   products: Product[];

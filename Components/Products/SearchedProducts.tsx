@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import ImageWithFallback from '../../Shared/ImageWithFallback';
-import { Text, Box } from '../../Shared/Restyle/Restyle';
-import { ProductsScreenNavigationProp } from './ProductsScreen';
+import ImageWithFallback from '../ImageWithFallback';
+import { Text, Box } from '../Restyle/Restyle';
+import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
 
 interface Props {
   productsFiltered: Product[];

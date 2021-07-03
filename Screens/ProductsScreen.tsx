@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TextInput, Pressable } from 'react-native';
-import ProductList from './ProductList';
-import SearchedProducts from './SearchedProducts';
+import ProductList from '../Components/Products/ProductList';
+import SearchedProducts from '../Components/Products/SearchedProducts';
 import { EvilIcons } from '@expo/vector-icons';
-import CategoryFilter from './CategoryFilter';
+import CategoryFilter from '../Components/Products/CategoryFilter';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { HomeStackParamList } from '../../Navigators/HomeNavigator';
-import { useGetAllProductsQuery } from '../../Services/productApi';
+import { HomeStackParamList } from '../Navigators/HomeNavigator';
+import { useGetAllProductsQuery } from '../Services/productApi';
 import { RouteProp } from '@react-navigation/native';
-import { Box } from '../../Shared/Restyle/Restyle';
-import { useGetAllCategoriesQuery } from '../../Services/categoryApi';
+import { Box } from '../Components/Restyle/Restyle';
+import { useGetAllCategoriesQuery } from '../Services/categoryApi';
 
 export type ProductsScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
@@ -46,7 +46,7 @@ const ProductsScreen = (props: Props) => {
     error: categoriesError,
     isFetching: categoriesIsFetching,
   } = useGetAllCategoriesQuery();
-
+  
   useEffect(() => {
     setInitialState(fetchedProducts ?? []);
     setProducts(fetchedProducts ?? []);

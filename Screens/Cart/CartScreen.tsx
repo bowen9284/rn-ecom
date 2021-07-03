@@ -3,13 +3,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Button from '../../Shared/Restyle/Button';
-import { Text, Box } from '../../Shared/Restyle/Restyle';
+import Button from '../../Components/Restyle/Button';
+import { Text, Box } from '../../Components/Restyle/Restyle';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { CartStackParamList } from '../../Navigators/CartNavigator';
 import { clearCart, removeFromCart } from '../../Redux/Slices/cartSlice';
 import { formatPrice } from '../../util/currency';
-import ImageWithFallback from '../../Shared/ImageWithFallback';
+import ImageWithFallback from '../../Components/ImageWithFallback';
 
 export type CartScreenNavigationProp = StackNavigationProp<
   CartStackParamList,
@@ -27,6 +27,11 @@ const CartScreen = (props: Props) => {
   const { navigation } = props;
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    console.log('here')
+  }, []);
+
   return (
     <Box flex={1} marginHorizontal="m" marginVertical="s">
       {cart.items.length ? (

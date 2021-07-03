@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image } from 'react-native';
-import { Box } from '../Shared/Restyle/Restyle';
-import ProductDetail from '../Screens/Products/ProductDetail';
-import ProductsScreen from '../Screens/Products/ProductsScreen';
+import { Box } from '../Components/Restyle/Restyle';
+import ProductDetail from '../Components/Products/ProductDetail';
+import ProductsScreen from '../Screens/ProductsScreen';
 
 export type HomeStackParamList = {
   ProductsScreen: undefined;

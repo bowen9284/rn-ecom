@@ -2,12 +2,12 @@ import { Picker } from '@react-native-community/picker';
 import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tabs';
 import React, { useEffect, useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Box } from '../../Shared/Restyle/Restyle';
+import { Box } from '../../Components/Restyle/Restyle';
 import { useAppSelector } from '../../hooks/redux';
 import { CheckoutTabParamList } from '../../Navigators/CheckoutNavigator';
-import Form from '../../Shared/Form/Form';
-import Input from '../../Shared/Form/Input';
-import TabAdvanceButton from '../../Shared/Form/TabAdvanceButton';
+import Form from '../../Components/Form/Form';
+import Input from '../../Components/Form/Input';
+import TabAdvanceButton from '../../Components/Form/TabAdvanceButton';
 
 const countriesList = require('../../assets/countries.json');
 
@@ -103,7 +103,7 @@ const ShippingScreen = (props: Props) => {
               onValueChange={(item) => setCountry(item)}
             >
               <Picker.Item label="United States" value="US" />
-              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="Canada" value="Canada" />
 
               {/* {countries.map((country) => {
               <Picker.Item label={country.code} value={country.name} />;

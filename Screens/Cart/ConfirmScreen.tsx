@@ -2,11 +2,11 @@ import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tab
 import { RouteProp } from '@react-navigation/native';
 import React from 'react';
 import { ActivityIndicator, Image, StyleSheet } from 'react-native';
-import { Text, Box } from '../../Shared/Restyle/Restyle';
+import { Text, Box } from '../../Components/Restyle/Restyle';
 import { useAppDispatch } from '../../hooks/redux';
 import { CheckoutTabParamList } from '../../Navigators/CheckoutNavigator';
 import { clearCart } from '../../Redux/Slices/cartSlice';
-import TabAdvanceButton from '../../Shared/Form/TabAdvanceButton';
+import TabAdvanceButton from '../../Components/Form/TabAdvanceButton';
 import { formatPrice } from '../../util/currency';
 import { useAddOrderMutation } from '../../Services/orderApi';
 

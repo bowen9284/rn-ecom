@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '../../../jest/setup';
-import ProductList from '../../../Screens/Products/ProductList';
+import ProductList from '../../../Components/Products/ProductList';
 
 import fakeProducts from '../../mockData/products.json';
 

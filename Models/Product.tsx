@@ -9,6 +9,6 @@ interface Product {
   name: string;
   description: string;
   category: Category;
-  countInStock: number;
+countInStock: number;
   quantity: number;
 }
