@@ -7,7 +7,7 @@ import { View } from 'react-native';
 import ProductCard from './ProductCard';
 import { imageUrl } from '../ImageWithFallback.story';
 
-const product: Product = {
+export const product: Product = {
   id: '5f15d8852a025143f9593a7c',
   image: imageUrl,
   brand: 'PS3',
@@ -28,27 +28,22 @@ const longProductName = 'abcdefghij klmnopqr stuvwxyz 123 456';
 
 const productCardStories = storiesOf('ProductCardStories', module);
 productCardStories.addDecorator(withKnobs);
-
-productCardStories.add('Default view', () => (
+productCardStories.addDecorator((story) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <ProductCard product={product} />
+    {story()}
   </View>
 ));
 
+productCardStories.add('Default view', () => <ProductCard product={product} />);
+
 productCardStories.add('With fallback image', () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <ProductCard product={{ ...product, image: '' }} />
-  </View>
+  <ProductCard product={{ ...product, image: '' }} />
 ));
 
 productCardStories.add('With long name', () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <ProductCard product={{ ...product, name: longProductName }} />
-  </View>
+  <ProductCard product={{ ...product, name: longProductName }} />
 ));
 
 productCardStories.add('With long price', () => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ProductCard product={{ ...product, price: 1000000 }} />
-    </View>
-  ));
+  <ProductCard product={{ ...product, price: 1000000 }} />
+));

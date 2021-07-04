@@ -3,16 +3,17 @@ import { ActivityIndicator, FlatList } from 'react-native';
 import ProductListItem from './ProductListItem';
 import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
 import { Text } from '../Restyle/Restyle';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   products: Product[];
-  navigation: ProductsScreenNavigationProp;
   fetchError: any;
   isFetching: boolean;
 }
 
 const ProductList = (props: Props) => {
-  const { products, navigation, fetchError, isFetching } = props;
+  const { products, fetchError, isFetching } = props;
+  const navigation = useNavigation<ProductsScreenNavigationProp>();
 
   if (isFetching) {
     return <ActivityIndicator testID="activity-indicator" />;

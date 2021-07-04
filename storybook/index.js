@@ -17,6 +17,7 @@ addDecorator(withKnobs);
 configure(() => {
   require('../Components/ImageWithFallback.story');
   require('../Components/Products/ProductCard.story');
+  require('../Components/Products/ProductList.story');
 
 }, module);
 
