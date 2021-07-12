@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Image, Dimensions } from 'react-native';
-import { Text } from '../../Shared/Restyle/Restyle';
-import Button from '../../Shared/Restyle/Button';
+import { Text } from '../Restyle/Restyle';
+import Button from '../Restyle/Button';
 import { useAppDispatch } from '../../hooks/redux';
 import { addToCart } from '../../Redux/Slices/cartSlice';
-import Card from '../../Shared/Restyle/Card';
+import Card from '../Restyle/Card';
 import { formatPrice } from '../../util/currency';
-import ImageWithFallback from '../../Shared/ImageWithFallback';
+import ImageWithFallback from '../ImageWithFallback';
 
 let { width } = Dimensions.get('window');
 

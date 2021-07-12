@@ -2,14 +2,14 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { ScrollView, Image, StyleSheet } from 'react-native';
-import Button from '../../Shared/Restyle/Button';
-import { Text, Box } from '../../Shared/Restyle/Restyle';
+import Button from '../Restyle/Button';
+import { Text, Box } from '../Restyle/Restyle';
 import { useAppDispatch } from '../../hooks/redux';
 
 import { HomeStackParamList } from '../../Navigators/HomeNavigator';
 import { addToCart } from '../../Redux/Slices/cartSlice';
 import { formatPrice } from '../../util/currency';
-import ImageWithFallback from '../../Shared/ImageWithFallback';
+import ImageWithFallback from '../ImageWithFallback';
 
 export type ProductDetailScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,

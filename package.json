@@ -18,8 +18,9 @@
     "setupFiles": [
       "<rootDir>/jest/setup.tsx"
     ],
-    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"]
-
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ]
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",

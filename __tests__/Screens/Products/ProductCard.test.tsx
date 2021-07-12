@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '../../../jest/setup';
 import fakeProducts from '../../mockData/products.json';
-import ProductCard from '../../../Screens/Products/ProductCard';
+import ProductCard from '../../../Components/Products/ProductCard';
 
 const fakeProduct: any = fakeProducts[0];
 const fakeProductNotInStock: any = fakeProducts[5];

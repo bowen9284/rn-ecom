@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '../../../jest/setup';
 import fakeCategories from '../../mockData/categories.json';
-import CategoryFilter from '../../../Screens/Products/CategoryFilter';
+import CategoryFilter from '../../../Components/Products/CategoryFilter';
 
 const setActive: any = jest.fn();
 const onCategoryFilter: any = jest.fn();
