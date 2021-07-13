@@ -1,0 +1,16 @@
+import React from 'react';
+import { Box, Text } from './Restyle/Restyle';
+
+interface Props {
+  children: React.ReactNode;
+}
+
+const ErrorText = ({ children }: Props) => {
+  return (
+    <Box justifyContent="center" alignItems="center">
+      <Text>{children}</Text>
+    </Box>
+  );
+};
+
+export default ErrorText;

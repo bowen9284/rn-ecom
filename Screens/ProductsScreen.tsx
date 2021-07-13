@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, TextInput, Pressable } from 'react-native';
 import ProductList from '../Components/Products/ProductList';
 import SearchedProducts from '../Components/Products/SearchedProducts';
@@ -28,7 +28,6 @@ const ProductsScreen = (props: Props) => {
 
   const [initialState, setInitialState] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
 
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
 
@@ -36,25 +35,24 @@ const ProductsScreen = (props: Props) => {
   const [active, setActive] = useState<number>(-1);
 
   const {
-    data: fetchedProducts,
+    data: fetchedProducts = [],
     error: productsError,
-    isFetching: productsIsFetching,
+    isLoading: productsIsLoading,
   } = useGetAllProductsQuery();
 
   const {
-    data: fetchedCategories,
+    data: fetchedCategories = [],
     error: categoriesError,
-    isFetching: categoriesIsFetching,
+    isLoading: categoriesIsLoading,
   } = useGetAllCategoriesQuery();
-  
+
   useEffect(() => {
-    setInitialState(fetchedProducts ?? []);
-    setProducts(fetchedProducts ?? []);
-    setProductsFiltered(fetchedProducts ?? []);
+    setInitialState(fetchedProducts);
+    setProducts(fetchedProducts);
+    setProductsFiltered(fetchedProducts);
     setFocus(false);
-    setCategories(fetchedCategories ?? []);
     setActive(-1);
-  }, [fetchedProducts]);
+  }, []);
 
   const searchProduct = (text: string) => {
     if (!products) {
@@ -86,6 +84,7 @@ const ProductsScreen = (props: Props) => {
     const filteredProducts = initialState.filter(
       (product) => product.category.id === category.id
     );
+    console.log(filteredProducts);
 
     setProducts(filteredProducts);
   };
@@ -109,12 +108,14 @@ const ProductsScreen = (props: Props) => {
           onChangeText={(text) => searchProduct(text)}
           autoCorrect={false}
         />
+
         {focus === true ? (
           <Pressable onPress={() => closeList()}>
             <EvilIcons name="close" size={20} color="black" />
           </Pressable>
         ) : null}
       </Box>
+
       {focus ? (
         <SearchedProducts
           productsFiltered={productsFiltered}
@@ -123,17 +124,17 @@ const ProductsScreen = (props: Props) => {
       ) : (
         <>
           <CategoryFilter
-            categories={categories}
+            categories={fetchedCategories}
             onCategoryFilter={filterByCategory}
             active={active}
             setActive={setActive}
-            isFetching={categoriesIsFetching}
+            isLoading={categoriesIsLoading}
             fetchError={categoriesError}
           />
           <Box flex={1} alignItems="center">
             <ProductList
-              products={products}
-              isFetching={productsIsFetching}
+              products={fetchedProducts}
+              isLoading={productsIsLoading}
               fetchError={productsError}
             />
           </Box>

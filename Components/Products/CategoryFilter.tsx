@@ -1,5 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import ErrorText from '../ErrorText';
 import { Text, Box } from '../Restyle/Restyle';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
   setActive: (index: number) => void;
   onCategoryFilter: (filterCriteria: Category, active: number) => void;
   fetchError: any;
-  isFetching: boolean;
+  isLoading: boolean;
 }
 
 const CategoryFilter = (props: Props) => {
@@ -18,19 +19,19 @@ const CategoryFilter = (props: Props) => {
     setActive,
     onCategoryFilter,
     fetchError,
-    isFetching,
+    isLoading,
   } = props;
 
-  if (isFetching) {
+  if (fetchError !== undefined) {
+    return <ErrorText>There was an error fetching categories.</ErrorText>;
+  }
+
+  if (isLoading) {
     return <ActivityIndicator testID="activity-indicator" />;
   }
 
-  if (fetchError !== undefined) {
-    return <Text>There was an error fetching categories.</Text>;
-  }
-
-  if (!categories.length) {
-    return <Text>No Products found that match category.</Text>;
+  if (!categories?.length) {
+    return <ErrorText>No Products found that match category.</ErrorText>;
   }
 
   return (

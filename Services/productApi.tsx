@@ -9,7 +9,7 @@ export const productApi = createApi({
   endpoints: (build) => ({
     getAllProducts: build.query<ProductReponse, void>({
       query: () => 'products',
-      transformResponse: ((response: ProductReponse): any => {
+      transformResponse: ((response: ProductReponse) => {
           response.forEach((product: Product) => {
            product.quantity = 1;
         });
