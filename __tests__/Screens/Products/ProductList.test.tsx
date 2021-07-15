@@ -15,7 +15,7 @@ test('Product List shows Activity Indicator while fetching', () => {
     <ProductList
       products={fakeProductsProp}
       fetchError={undefined}
-      isFetching={true}
+      isLoading={true}
     />
   );
 
@@ -29,7 +29,7 @@ test('Product List shows Activity Indicator while fetching', () => {
     <ProductList
       products={fakeProductsProp}
       fetchError={fetchError}
-      isFetching={false}
+      isLoading={false}
     />
   );
 
@@ -38,7 +38,7 @@ test('Product List shows Activity Indicator while fetching', () => {
 
 test('Product List shows Activity Indicator while fetching', () => {
   const { getByText } = render(
-    <ProductList products={[]} fetchError={undefined} isFetching={false} />
+    <ProductList products={[]} fetchError={undefined} isLoading={false} />
   );
 
   expect(getByText('No Products Found.'));
@@ -49,7 +49,7 @@ test('<ProductList /> FlatList Config', async () => {
     <ProductList
       products={fakeProductsProp}
       fetchError={undefined}
-      isFetching={false}
+      isLoading={false}
     />
   );
 

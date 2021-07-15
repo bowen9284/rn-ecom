@@ -17,7 +17,7 @@ test('fetching categories displays activity indicator', () => {
       categories={categories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
-      isFetching={true}
+      isLoading={true}
       fetchError={undefined}
     />
   );
@@ -35,7 +35,7 @@ test('fetching categories error displays "There was an error fetching categories
       categories={categories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
-      isFetching={false}
+      isLoading={false}
       fetchError={fetchError}
     />
   );
@@ -52,7 +52,7 @@ test('Empty Categories displays No Products found that match category.', () => {
       categories={emptyCategories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
-      isFetching={false}
+      isLoading={false}
       fetchError={undefined}
     />
   );
@@ -69,7 +69,7 @@ test('<CategoryFilter> ScrollView config', () => {
       categories={categories}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
-      isFetching={false}
+      isLoading={false}
       fetchError={undefined}
     />
   );
@@ -89,7 +89,7 @@ test('<CategoryFilter> onPress filters products and is active', () => {
       categories={[firstFakeCateogry]}
       setActive={setActive}
       onCategoryFilter={onCategoryFilter}
-      isFetching={false}
+      isLoading={false}
       fetchError={undefined}
     />
   );

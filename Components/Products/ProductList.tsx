@@ -2,29 +2,29 @@ import React from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
 import ProductListItem from './ProductListItem';
 import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
-import { Text } from '../Restyle/Restyle';
 import { useNavigation } from '@react-navigation/native';
+import ErrorText from '../ErrorText';
 
 interface Props {
   products: Product[];
   fetchError: any;
-  isFetching: boolean;
+  isLoading: boolean;
 }
 
 const ProductList = (props: Props) => {
-  const { products, fetchError, isFetching } = props;
+  const { products, fetchError, isLoading } = props;
   const navigation = useNavigation<ProductsScreenNavigationProp>();
 
-  if (isFetching) {
+  if (fetchError) {
+    return <ErrorText>There was an error fetching products.</ErrorText>;
+  }
+
+  if (isLoading) {
     return <ActivityIndicator testID="activity-indicator" />;
   }
 
-  if (fetchError) {
-    return <Text>There was an error fetching products.</Text>;
-  }
-
   if (!products.length) {
-    return <Text>No Products Found.</Text>
+    return <ErrorText>No Products Found.</ErrorText>;
   }
 
   return (

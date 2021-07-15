@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import ImageWithFallback from '../ImageWithFallback';
 import { Text, Box } from '../Restyle/Restyle';
 import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
+import ErrorText from '../ErrorText';
 
 interface Props {
   productsFiltered: Product[];
@@ -33,7 +34,7 @@ const SearchedProducts = (props: Props) => {
 
   return (
     <Box flex={1} paddingHorizontal="m" backgroundColor="mainBackground">
-      {productsFiltered && productsFiltered.length > 0 ? (
+      {productsFiltered.length ? (
         <FlatList
           data={productsFiltered}
           renderItem={renderItem}
@@ -41,7 +42,7 @@ const SearchedProducts = (props: Props) => {
         />
       ) : (
         <Box>
-          <Text>No products meet criteria</Text>
+          <ErrorText>No products meet criteria</ErrorText>
         </Box>
       )}
     </Box>
