@@ -7,8 +7,8 @@ interface Props {
 
 const ErrorText = ({ children }: Props) => {
   return (
-    <Box justifyContent="center" alignItems="center">
-      <Text>{children}</Text>
+    <Box flex={1} justifyContent="center" alignItems="center">
+      <Text variant='title'>{children}</Text>
     </Box>
   );
 };

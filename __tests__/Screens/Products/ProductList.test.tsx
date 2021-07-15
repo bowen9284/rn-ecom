@@ -41,7 +41,7 @@ test('Product List shows Activity Indicator while fetching', () => {
     <ProductList products={[]} fetchError={undefined} isLoading={false} />
   );
 
-  expect(getByText('No Products Found.'));
+  expect(getByText('No Products Found'));
 });
 
 test('<ProductList /> FlatList Config', async () => {
