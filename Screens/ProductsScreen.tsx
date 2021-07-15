@@ -133,7 +133,7 @@ const ProductsScreen = (props: Props) => {
           />
           <Box flex={1} alignItems="center">
             <ProductList
-              products={fetchedProducts}
+              products={products}
               isLoading={productsIsLoading}
               fetchError={productsError}
             />
