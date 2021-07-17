@@ -2,6 +2,8 @@ import React from 'react';
 import { ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
 import ErrorText from '../ErrorText';
 import { Text, Box } from '../Restyle/Restyle';
+import SkeletonContent from 'react-native-skeleton-content';
+import theme from '../../util/theme';
 
 interface Props {
   categories: Category[];
@@ -22,12 +24,26 @@ const CategoryFilter = (props: Props) => {
     isLoading,
   } = props;
 
+  const skeletonBonesLayout = Array(4).fill({ width: 80, height: 40 });
+
   if (fetchError !== undefined) {
     return <ErrorText>There was an error fetching categories.</ErrorText>;
   }
 
   if (isLoading) {
-    return <ActivityIndicator testID="activity-indicator" />;
+    return (
+      <Box margin="s" testID="activity-indicator">
+        <SkeletonContent
+          containerStyle={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+          isLoading={isLoading}
+          layout={skeletonBonesLayout}
+        />
+      </Box>
+    );
   }
 
   if (!categories?.length) {
@@ -43,8 +59,8 @@ const CategoryFilter = (props: Props) => {
       >
         {categories.map((cat, catIndex) => (
           <TouchableOpacity
-            testID={`category-pressable-${cat.id}`}
             key={catIndex}
+            testID={`category-pressable-${cat.id}`}
             onPress={() => {
               const isActive =
                 active === categories.indexOf(cat) ? -1 : catIndex;

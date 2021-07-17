@@ -24,7 +24,7 @@ const ProductList = (props: Props) => {
   }
 
   if (!products.length) {
-    return <ErrorText>No Products Found.</ErrorText>;
+    return <ErrorText>No Products Found</ErrorText>;
   }
 
   return (
