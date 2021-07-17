@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import UserScreen from '../Screens/UserScreen';
+import UserScreen from '../Screens/User/UserScreen';
 import AdminScreen from '../Screens/AdminScreen';
 import HomeNavigator from './HomeNavigator';
 import CartNavigator from './CartNavigator';

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useLayoutEffect} from 'react';
 import { StyleSheet, TextInput, Pressable } from 'react-native';
 import ProductList from '../Components/Products/ProductList';
 import SearchedProducts from '../Components/Products/SearchedProducts';
@@ -28,7 +28,6 @@ const ProductsScreen = (props: Props) => {
 
   const [initialState, setInitialState] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
 
   const [focus, setFocus] = useState<boolean>();
@@ -48,10 +47,9 @@ const ProductsScreen = (props: Props) => {
 
   useEffect(() => {
     setInitialState(fetchedProducts);
-    setProducts(fetchedProducts);
-    setProductsFiltered(fetchedProducts);
     setFocus(false);
     setActive(-1);
+    setProducts(fetchedProducts)
   }, []);
 
   const searchProduct = (text: string) => {
@@ -81,14 +79,17 @@ const ProductsScreen = (props: Props) => {
       return;
     }
 
-    const filteredProducts = initialState.filter(
-      (product) => product.category.id === category.id
+    setProducts(
+      fetchedProducts.filter((product) => product.category.id === category.id)
     );
-    console.log(filteredProducts);
-
-    setProducts(filteredProducts);
   };
 
+  // Workaround RTK Query and useEffect not working nicely together here. 
+  // calling setProducts(fetchProducts) in useEffect does not set state before initial render :-/
+  const productsList = () => {
+    return active === -1 && products.length === 0 ? fetchedProducts : products
+  }
+  
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <Box
@@ -133,7 +134,7 @@ const ProductsScreen = (props: Props) => {
           />
           <Box flex={1} alignItems="center">
             <ProductList
-              products={products}
+              products={productsList()}
               isLoading={productsIsLoading}
               fetchError={productsError}
             />
@@ -143,6 +144,7 @@ const ProductsScreen = (props: Props) => {
     </Box>
   );
 };
+
 
 const styles = StyleSheet.create({
   searchInput: {
