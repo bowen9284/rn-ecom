@@ -1,9 +1,8 @@
 import React from 'react';
-import { ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import ErrorText from '../ErrorText';
 import { Text, Box } from '../Restyle/Restyle';
-import SkeletonContent from 'react-native-skeleton-content';
-import theme from '../../util/theme';
+import CategoriesSkeleton from '../Skeletons/CategoriesSkeleton';
 
 interface Props {
   categories: Category[];
@@ -24,29 +23,15 @@ const CategoryFilter = (props: Props) => {
     isLoading,
   } = props;
 
-  const skeletonBonesLayout = Array(4).fill({ width: 80, height: 40 });
-
   if (fetchError !== undefined) {
     return <ErrorText>There was an error fetching categories.</ErrorText>;
   }
 
   if (isLoading) {
-    return (
-      <Box margin="s" testID="activity-indicator">
-        <SkeletonContent
-          containerStyle={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-          isLoading={isLoading}
-          layout={skeletonBonesLayout}
-        />
-      </Box>
-    );
+    return <CategoriesSkeleton isLoading={isLoading} />;
   }
 
-  if (!categories?.length) {
+  if (!categories.length) {
     return <ErrorText>No Products found that match category.</ErrorText>;
   }
 

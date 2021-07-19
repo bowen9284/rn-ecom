@@ -25,10 +25,35 @@ productListStories
   ))
   .addDecorator(reactNavigationDecorator);
 
-productListStories.add('Default View', () => (
+productListStories.add('Default view', () => (
   <ProductList
     products={defaultProducts}
     fetchError={undefined}
-    isFetching={false}
+    isLoading={false}
   />
 ));
+
+productListStories.add('Loading skeleton view', () => (
+  <ProductList
+    products={[]}
+    fetchError={undefined}
+    isLoading={true}
+  />
+));
+
+productListStories.add('No products view', () => (
+  <ProductList
+    products={[]}
+    fetchError={undefined}
+    isLoading={false}
+  />
+));
+
+productListStories.add('Error fetching view', () => (
+  <ProductList
+    products={[]}
+    fetchError={true}
+    isLoading={false}
+  />
+));
+

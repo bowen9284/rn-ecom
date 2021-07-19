@@ -12,6 +12,7 @@ const palette = {
   black: '#0B0B0B',
   white: '#FFFFFF',
   gray: '#dddddd',
+  darkGray: '#A9A9A9',
 
   red: '#ff2d54',
 };
@@ -20,6 +21,8 @@ const theme = createTheme({
   colors: {
     mainBackground: palette.gray,
     mainForeground: palette.black,
+    skeletonBackground: palette.white,
+    skeletonHighlight: palette.gray,
     cardPrimaryBackground: palette.white,
     buttonPrimaryBackground: palette.purplePrimary,
     buttonDisabledPrimaryBackground: palette.purpleDark,
@@ -28,6 +31,7 @@ const theme = createTheme({
     mainText: palette.black,
     lightText: palette.white,
     borderPrimary: palette.gray,
+    skeletonPrimaryBackground: palette.darkGray,
   },
   spacing: {
     s: 8,

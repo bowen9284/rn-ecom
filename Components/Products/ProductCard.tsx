@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Text } from '../Restyle/Restyle';
 import Button from '../Restyle/Button';
 import { useAppDispatch } from '../../hooks/redux';
@@ -7,8 +7,6 @@ import { addToCart } from '../../Redux/Slices/cartSlice';
 import Card from '../Restyle/Card';
 import { formatPrice } from '../../util/currency';
 import ImageWithFallback from '../ImageWithFallback';
-
-let { width } = Dimensions.get('window');
 
 interface Props {
   product: Product;
@@ -55,9 +53,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 5,
     backgroundColor: 'white',
-  },
-  card: {
-    height: width / 2 - 20 - 90,
   },
   image: {
     width: 100,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '../../../jest/setup';
-import fakeCategories from '../../mockData/categories.json';
+import fakeCategories from '../../../util/mockData/categories.json';
 import CategoryFilter from '../../../Components/Products/CategoryFilter';
 
 const setActive: any = jest.fn();
@@ -8,7 +8,7 @@ const onCategoryFilter: any = jest.fn();
 
 const firstFakeCateogry: any = fakeCategories[0];
 
-test('fetching categories displays activity indicator', () => {
+test('fetching categories displays loading skeleton', () => {
   const categories: any = fakeCategories;
 
   const { getByTestId } = render(
@@ -22,7 +22,7 @@ test('fetching categories displays activity indicator', () => {
     />
   );
 
-  expect(getByTestId('activity-indicator'));
+  expect(getByTestId('category-loading-skeleton'));
 });
 
 test('fetching categories error displays "There was an error fetching categories."', () => {
