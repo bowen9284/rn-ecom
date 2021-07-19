@@ -1,11 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { action } from '@storybook/addon-actions';
-
-import { text, withKnobs } from '@storybook/addon-knobs';
-import { View } from 'react-native';
+import { withKnobs } from '@storybook/addon-knobs';
 import ProductCard from './ProductCard';
 import { imageUrl } from '../ImageWithFallback.story';
+import { Box } from '../Restyle/Restyle';
 
 export const product: Product = {
   id: '5f15d8852a025143f9593a7c',
@@ -22,16 +20,17 @@ export const product: Product = {
     name: 'Electronics',
   },
   countInStock: 25,
+  quantity: 0,
 };
 
 const longProductName = 'abcdefghij klmnopqr stuvwxyz 123 456';
 
-const productCardStories = storiesOf('ProductCardStories', module);
+const productCardStories = storiesOf('ProductCard', module);
 productCardStories.addDecorator(withKnobs);
 productCardStories.addDecorator((story) => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  <Box flex={1} alignItems="center" justifyContent="center">
     {story()}
-  </View>
+  </Box>
 ));
 
 productCardStories.add('Default view', () => <ProductCard product={product} />);

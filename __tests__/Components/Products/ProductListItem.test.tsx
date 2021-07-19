@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '../../../jest/setup';
 
-import fakeProducts from '../../mockData/products.json';
+import fakeProducts from '../../../util/mockData/products.json'
 import ProductListItem from '../../../Components/Products/ProductListItem';
 
 const mockNavigation: any = {

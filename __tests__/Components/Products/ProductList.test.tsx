@@ -2,7 +2,7 @@ import React from 'react';
 import { render, waitFor } from '../../../jest/setup';
 import ProductList from '../../../Components/Products/ProductList';
 
-import fakeProducts from '../../mockData/products.json';
+import fakeProducts from '../../../util/mockData/products.json';
 
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => jest.fn(),
@@ -10,7 +10,7 @@ jest.mock('@react-navigation/native', () => ({
 
 const fakeProductsProp: any = fakeProducts;
 
-test('Product List shows Activity Indicator while fetching', () => {
+test('Product List shows skeleton while fetching', () => {
   const { getByTestId } = render(
     <ProductList
       products={fakeProductsProp}
@@ -19,7 +19,7 @@ test('Product List shows Activity Indicator while fetching', () => {
     />
   );
 
-  expect(getByTestId('activity-indicator'));
+  expect(getByTestId('product-loading-skeleton'));
 });
 
 test('Product List shows Activity Indicator while fetching', () => {
