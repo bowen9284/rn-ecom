@@ -31,7 +31,7 @@ categoryFilterStories.add('Loading skeleton view', () => (
       onCategoryFilter={() => {}}
       active={-1}
       setActive={() => {}}
-      isLoading={true}
+      isLoading
       fetchError={undefined}
     />
   ));

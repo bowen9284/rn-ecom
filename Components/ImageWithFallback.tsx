@@ -22,7 +22,7 @@ const ImageWithFallback = (props: Props) => {
 
   return (
     <>
-      {image != '' ? (
+      {image !== '' ? (
         <Image
           onError={() => fallbackOnError()}
           testID="card-remote-image"

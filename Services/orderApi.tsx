@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import Order from '../Models/Order';
 import { baseUrl } from './baseApi';
 
 export const orderApi = createApi({

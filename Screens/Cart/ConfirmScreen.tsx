@@ -9,6 +9,7 @@ import { clearCart } from '../../Redux/Slices/cartSlice';
 import TabAdvanceButton from '../../Components/Form/TabAdvanceButton';
 import { formatPrice } from '../../util/currency';
 import { useAddOrderMutation } from '../../Services/orderApi';
+import Product from '../../Models/Product';
 
 export type ConfirmScreenNavigationProp = MaterialTopTabNavigationProp<
   CheckoutTabParamList,
@@ -45,7 +46,7 @@ const ConfirmScreen = (props: Props) => {
 
   const OrderConfirmation = () => {
     if (params?.order) {
-      const order = params.order;
+      const { order } = params;
       return (
         <Box>
           <Text>Address: {order.shippingAddress1}</Text>
@@ -55,30 +56,28 @@ const ConfirmScreen = (props: Props) => {
           <Text>Country: {order.country}</Text>
           <Text variant="title">Items:</Text>
           <Box>
-            {order.orderItems.map((item) => {
-              return (
-                <Box
-                  key={item.id}
-                  flexDirection="row"
-                  justifyContent="space-evenly"
-                >
-                  {item.image != '' ? (
-                    <Image
-                      resizeMode="center"
-                      source={{ uri: item.image }}
-                      style={styles.image}
-                    />
-                  ) : (
-                    <Image
-                      source={require('../../assets/placeholder.jpeg')}
-                      style={styles.image}
-                    />
-                  )}
-                  <Text>{item.name}</Text>
-                  <Text>{formatPrice(item.price)}</Text>
-                </Box>
-              );
-            })}
+            {order.orderItems.map((item: Product) => (
+              <Box
+                key={item.id}
+                flexDirection="row"
+                justifyContent="space-evenly"
+              >
+                {item.image !== '' ? (
+                  <Image
+                    resizeMode="center"
+                    source={{ uri: item.image }}
+                    style={styles.image}
+                  />
+                ) : (
+                  <Image
+                    source={require('../../assets/placeholder.jpeg')}
+                    style={styles.image}
+                  />
+                )}
+                <Text>{item.name}</Text>
+                <Text>{formatPrice(item.price)}</Text>
+              </Box>
+            ))}
           </Box>
         </Box>
       );
@@ -92,7 +91,7 @@ const ConfirmScreen = (props: Props) => {
       <Box>
         <Box
           alignItems="center"
-          borderBottomColor={'borderPrimary'}
+          borderBottomColor="borderPrimary"
           borderBottomWidth={2}
           paddingVertical="s"
         >

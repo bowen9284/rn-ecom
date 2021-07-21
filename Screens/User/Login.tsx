@@ -1,16 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-interface Props {
-    
-}
+const Login = () => (
+  <View>
+    <Text>Login</Text>
+  </View>
+);
 
-const Login = (props: Props) => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
-
-export default Login
+export default Login;

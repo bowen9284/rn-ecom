@@ -1,8 +1,9 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { Box } from '../Restyle/Restyle';
-import ProductCard from './ProductCard';
 import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
+import Product from '../../Models/Product';
+import ProductCard from './ProductCard';
 
 interface Props {
   item: Product;
@@ -13,9 +14,9 @@ const ProductListItem = (props: Props) => {
   const { item, navigation } = props;
 
   return (
-    <Box testID={`product-` + item.id}>
+    <Box testID={`product-${item.id}`}>
       <Pressable
-        testID={`product-pressable-` + item.id}
+        testID={`product-pressable-${item.id}`}
         android_ripple={{ color: '#8C6FF7', borderless: true }}
         onPress={() =>
           navigation.navigate('ProductDetail', {

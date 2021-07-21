@@ -1,7 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState } from 'react';
-import { ScrollView, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import { ScrollView } from 'react-native';
 import Button from '../Restyle/Button';
 import { Text, Box } from '../Restyle/Restyle';
 import { useAppDispatch } from '../../hooks/redux';
@@ -19,16 +19,16 @@ export type ProductDetailScreenNavigationProp = StackNavigationProp<
 type ProductDetailRouteProp = RouteProp<HomeStackParamList, 'ProductDetail'>;
 
 interface Props {
-  navigation: ProductDetailScreenNavigationProp;
   route: ProductDetailRouteProp;
 }
 
-const ProductDetail = (props: Props) => {
+const ProductDetail = ({ route }: Props) => {
   const dispatch = useAppDispatch();
 
-  const { route } = props;
-  const [product, setProduct] = useState<Product>(route.params.product);
-  const [availability, setAvailability] = useState('');
+  const { params } = route;
+  const { product } = params;
+  // const [product, setProduct] = useState<Product>(route.params.product);
+  // const [availability, setAvailability] = useState('');
 
   return (
     <>
@@ -59,12 +59,5 @@ const ProductDetail = (props: Props) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  image: {
-    width: '100%',
-    height: 250,
-  },
-});
 
 export default ProductDetail;

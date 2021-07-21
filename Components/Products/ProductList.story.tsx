@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react-native';
+import { View } from 'react-native';
 import ProductList from './ProductList';
 import { product } from './ProductCard.story';
-import { action } from '@storybook/addon-actions';
-import { View } from 'react-native';
 import { reactNavigationDecorator } from '../../storybook/StoryNavigator';
 
 export const defaultProducts = [
@@ -37,13 +36,13 @@ productListStories.add('Loading skeleton view', () => (
   <ProductList
     products={[]}
     fetchError={undefined}
-    isLoading={true}
+    isLoading
   />
 ));
 
 productListStories.add('No products view', () => (
   <ProductList
-    products={[]}
+    products={[]}s
     fetchError={undefined}
     isLoading={false}
   />
@@ -52,7 +51,7 @@ productListStories.add('No products view', () => (
 productListStories.add('Error fetching view', () => (
   <ProductList
     products={[]}
-    fetchError={true}
+    fetchError
     isLoading={false}
   />
 ));

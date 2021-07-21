@@ -12,30 +12,26 @@ export type CartStackParamList = {
 
 const Stack = createStackNavigator<CartStackParamList>();
 
-const LogoTitle = () => {
-  return (
-    <Box>
-      <Image
-        resizeMode="contain"
-        style={{ width: 40 }}
-        source={require('../assets/logo.jpeg')}
-      />
-    </Box>
-  );
-};
+const LogoTitle = () => (
+  <Box>
+    <Image
+      resizeMode="contain"
+      style={{ width: 40 }}
+      source={require('../assets/logo.jpeg')}
+    />
+  </Box>
+);
 
-const CartNavigator = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTitle: (props) => <LogoTitle />,
-        headerBackTitle: 'Back',
-      }}
-    >
-      <Stack.Screen name="Cart" component={CartScreen} />
-      <Stack.Screen name="CartCheckout" component={CheckoutNavigator} />
-    </Stack.Navigator>
-  );
-};
+const CartNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerTitle: () => <LogoTitle />,
+      headerBackTitle: 'Back',
+    }}
+  >
+    <Stack.Screen name="Cart" component={CartScreen} />
+    <Stack.Screen name="CartCheckout" component={CheckoutNavigator} />
+  </Stack.Navigator>
+);
 
 export default CartNavigator;

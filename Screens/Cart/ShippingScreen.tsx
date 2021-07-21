@@ -8,6 +8,9 @@ import { CheckoutTabParamList } from '../../Navigators/CheckoutNavigator';
 import Form from '../../Components/Form/Form';
 import Input from '../../Components/Form/Input';
 import TabAdvanceButton from '../../Components/Form/TabAdvanceButton';
+import Product from '../../Models/Product';
+import Country from '../../Models/Country';
+import Order from '../../Models/Order';
 
 const countriesList = require('../../assets/countries.json');
 
@@ -30,9 +33,9 @@ const ShippingScreen = (props: Props) => {
   const [city, setCity] = useState('Providence');
   const [zip, setZip] = useState<string>('55555');
   const [country, setCountry] = useState<string>('United States');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [countries, setCountries] = useState<Country[]>([]);
   const [phone, setPhone] = useState('781-777-2323');
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setOrderItems(cart.items);
@@ -40,7 +43,7 @@ const ShippingScreen = (props: Props) => {
   }, []);
 
   const goToCheckout = () => {
-    let order: Order = {
+    const order: Order = {
       city,
       country,
       dateOfOrder: Date.now(),
@@ -51,56 +54,48 @@ const ShippingScreen = (props: Props) => {
       zip,
     };
 
-    navigation.navigate('Payment', { order: order });
+    navigation.navigate('Payment', { order });
   };
 
   return (
     <>
       <Box>
         <KeyboardAwareScrollView
-          viewIsInsideTabBar={true}
+          viewIsInsideTabBar
           extraHeight={200}
-          enableOnAndroid={true}
+          enableOnAndroid
         >
           <Form title="Shipping Address">
             <Input
               placeholder="Phone"
-              name="phone"
               value={phone}
               keyboardType="numeric"
-              onChangeText={(text) => setPhone(text)}
+              onChangeText={(text: string) => setPhone(text)}
             />
             <Input
               placeholder="Shipping Address"
-              name="shipping address"
               value={address}
-              onChangeText={(text) => setAddress(text)}
+              onChangeText={(text: string) => setAddress(text)}
             />
             <Input
               placeholder="Shipping Address 2"
-              name="shipping address 2"
               value={address2}
-              keyboardType="default"
-              onChangeText={(text) => setAddress2(text)}
+              onChangeText={(text: string) => setAddress2(text)}
             />
             <Input
               placeholder="City"
-              name="city"
               value={city}
-              keyboardType="default"
-              onChangeText={(text) => setCity(text)}
+              onChangeText={(text: string) => setCity(text)}
             />
             <Input
               placeholder="Zip Code"
-              name="zip code"
               value={zip}
-              keyboardType="default"
-              onChangeText={(text) => setZip(text)}
+              onChangeText={(text: string) => setZip(text)}
             />
             <Picker
               testID="country-picker"
               selectedValue={country}
-              onValueChange={(item) => setCountry(item)}
+              onValueChange={(item: any) => setCountry(item)}
             >
               <Picker.Item label="United States" value="US" />
               <Picker.Item label="Canada" value="Canada" />

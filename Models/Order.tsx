@@ -1,4 +1,7 @@
-interface Order {
+import Product from "./Product";
+
+export default interface Order {
+  id?: string;
   city: string;
   country: string;
   dateOfOrder: number;

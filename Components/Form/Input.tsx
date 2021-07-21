@@ -1,35 +1,36 @@
 import React from 'react';
 import { KeyboardTypeOptions, TextInput, StyleSheet } from 'react-native';
-import { Text, Box } from '../Restyle/Restyle';
 
 interface Props {
   placeholder: string;
-  name: string;
-  id: string;
   value: string;
-  autoCorrect: boolean;
+  autoCorrect?: boolean;
   onChangeText: (text: string) => void;
-  onFocus: () => void;
-  secureTextEntry: boolean;
-  keyboardType: KeyboardTypeOptions;
+  onFocus?: () => void;
+  secureTextEntry?: boolean;
+  keyboardType?: KeyboardTypeOptions;
 }
 
-const Input = (props: Props) => {
-  return (
-    <TextInput
-      style={styles.input}
-      placeholder={props.placeholder}
-      name={props.name}
-      id={props.id}
-      value={props.value}
-      autoCorrect={props.autoCorrect}
-      onChangeText={props.onChangeText}
-      onFocus={props.onFocus}
-      secureTextEntry={props.secureTextEntry}
-      keyboardType={props.keyboardType}
-    ></TextInput>
-  );
-};
+const Input = ({
+  placeholder,
+  value,
+  autoCorrect = true,
+  onChangeText,
+  onFocus,
+  secureTextEntry = false,
+  keyboardType = 'default',
+}: Props) => (
+  <TextInput
+    style={styles.input}
+    placeholder={placeholder}
+    value={value}
+    autoCorrect={autoCorrect}
+    onChangeText={onChangeText}
+    onFocus={onFocus}
+    secureTextEntry={secureTextEntry}
+    keyboardType={keyboardType}
+  />
+);
 
 const styles = StyleSheet.create({
   input: {
