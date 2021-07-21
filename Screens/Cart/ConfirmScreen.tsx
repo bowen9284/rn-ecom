@@ -1,7 +1,7 @@
 import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tabs';
 import { RouteProp } from '@react-navigation/native';
 import React from 'react';
-import { ActivityIndicator, Image, StyleSheet } from 'react-native';
+import { ActivityIndicator, Image, FlatList, StyleSheet } from 'react-native';
 import { Text, Box } from '../../Components/Restyle/Restyle';
 import { useAppDispatch } from '../../hooks/redux';
 import { CheckoutTabParamList } from '../../Navigators/CheckoutNavigator';
