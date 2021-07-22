@@ -42,7 +42,7 @@ productListStories.add('Loading skeleton view', () => (
 
 productListStories.add('No products view', () => (
   <ProductList
-    products={[]}s
+    products={[]}
     fetchError={undefined}
     isLoading={false}
   />
