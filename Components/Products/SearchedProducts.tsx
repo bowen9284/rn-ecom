@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import ImageWithFallback from '../ImageWithFallback';
 import { Text, Box } from '../Restyle/Restyle';
 import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
 import ErrorText from '../ErrorText';
+import Product from '../../Models/Product';
 
 interface Props {
   productsFiltered: Product[];
@@ -50,12 +51,3 @@ const SearchedProducts = (props: Props) => {
 };
 
 export default SearchedProducts;
-
-const styles = StyleSheet.create({
-  thumbnail: {
-    height: 75,
-    width: 75,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-});

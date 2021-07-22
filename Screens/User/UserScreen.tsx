@@ -1,16 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-interface Props {
-    
-}
+const UserScreen = () => (
+  <View>
+    <Text>User Screen</Text>
+  </View>
+);
 
-const UserScreen = (props: Props) => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
-
-export default UserScreen
+export default UserScreen;

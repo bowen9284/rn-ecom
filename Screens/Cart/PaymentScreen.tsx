@@ -2,9 +2,9 @@ import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tab
 import { RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { Text, Box } from '../../Components/Restyle/Restyle';
 import { CheckoutTabParamList } from '../../Navigators/CheckoutNavigator';
-import { Feather } from '@expo/vector-icons';
 import TabAdvanceButton from '../../Components/Form/TabAdvanceButton';
 
 type PaymentScreenNavigationProp = MaterialTopTabNavigationProp<
@@ -29,6 +29,7 @@ const PaymentScreen = (props: Props) => {
     { name: 'MasterCard', value: 3 },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [paymentMethod, setPaymentMethod] = useState();
   const [card, setCard] = useState({ name: '', value: 0 });
 
@@ -41,36 +42,34 @@ const PaymentScreen = (props: Props) => {
       <Box>
         <Box
           alignItems="center"
-          borderBottomColor={'borderPrimary'}
+          borderBottomColor="borderPrimary"
           borderBottomWidth={2}
           paddingVertical="s"
         >
           <Text variant="title">Choose your payment method</Text>
         </Box>
-        {paymentCards.map((paymentCard, index) => {
-          return (
-            <TouchableOpacity
-              key={paymentCard.value}
-              onPress={() => {
-                setCard(paymentCard);
-              }}
+        {paymentCards.map((paymentCard: any, index: number) => (
+          <TouchableOpacity
+            key={paymentCard.value}
+            onPress={() => {
+              setCard(paymentCard);
+            }}
+          >
+            <Box
+              flexDirection="row"
+              justifyContent="space-between"
+              paddingVertical="s"
+              paddingHorizontal="m"
+              borderBottomWidth={1}
+              borderBottomColor="borderPrimary"
             >
-              <Box
-                flexDirection="row"
-                justifyContent="space-between"
-                paddingVertical="s"
-                paddingHorizontal="m"
-                borderBottomWidth={1}
-                borderBottomColor="borderPrimary"
-              >
-                <Text variant="body">{paymentCard.name}</Text>
-                {card.value === index + 1 ? (
-                  <Feather name="check" size={24} color="#5A31F4" />
-                ) : null}
-              </Box>
-            </TouchableOpacity>
-          );
-        })}
+              <Text variant="body">{paymentCard.name}</Text>
+              {card.value === index + 1 ? (
+                <Feather name="check" size={24} color="#5A31F4" />
+              ) : null}
+            </Box>
+          </TouchableOpacity>
+        ))}
       </Box>
       <TabAdvanceButton label="Next" onPress={() => goToConfirm()} />
     </>

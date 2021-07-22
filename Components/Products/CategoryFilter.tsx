@@ -3,6 +3,7 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 import ErrorText from '../ErrorText';
 import { Text, Box } from '../Restyle/Restyle';
 import CategoriesSkeleton from '../Skeletons/CategoriesSkeleton';
+import Category from '../../Models/Category';
 
 interface Props {
   categories: Category[];
@@ -39,12 +40,12 @@ const CategoryFilter = (props: Props) => {
     <Box>
       <ScrollView
         testID="scrollView"
-        horizontal={true}
+        horizontal
         showsHorizontalScrollIndicator={false}
       >
         {categories.map((cat, catIndex) => (
           <TouchableOpacity
-            key={catIndex}
+            key={cat.id}
             testID={`category-pressable-${cat.id}`}
             onPress={() => {
               const isActive =
@@ -54,7 +55,7 @@ const CategoryFilter = (props: Props) => {
             }}
           >
             <Box
-              key={catIndex}
+              key={cat.id}
               backgroundColor={
                 active === catIndex
                   ? 'buttonDisabledPrimaryBackground'

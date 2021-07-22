@@ -1,10 +1,9 @@
 import React from 'react';
 import SkeletonContent from 'react-native-skeleton-content';
-import { Box } from '../Restyle/Restyle';
-import { Theme } from '../../util/theme';
 import { useTheme } from '@shopify/restyle';
-import Card from '../Restyle/Card';
 import { View } from 'react-native';
+import { Theme } from '../../util/theme';
+import Card from '../Restyle/Card';
 
 interface Props {
   isLoading: boolean;

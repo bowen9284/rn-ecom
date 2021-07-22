@@ -7,6 +7,7 @@ import { addToCart } from '../../Redux/Slices/cartSlice';
 import Card from '../Restyle/Card';
 import { formatPrice } from '../../util/currency';
 import ImageWithFallback from '../ImageWithFallback';
+import Product from '../../Models/Product';
 
 interface Props {
   product: Product;
@@ -16,7 +17,7 @@ const ProductCard = (props: Props) => {
   const { product } = props;
   const { name, price, countInStock, image } = product;
   const dispatch = useAppDispatch();
-  
+
   return (
     <Card
       style={styles.container}
@@ -26,7 +27,7 @@ const ProductCard = (props: Props) => {
     >
       <ImageWithFallback image={image} />
       <Text textAlign="auto" variant="title">
-        {name.length > 15 ? name.substring(0, 15 - 3) + '...' : name}
+        {name.length > 15 ? `${name.substring(0, 15 - 3)}...` : name}
       </Text>
       <Text variant="body">{formatPrice(price)}</Text>
 

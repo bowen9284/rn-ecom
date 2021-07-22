@@ -1,10 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { action } from '@storybook/addon-actions';
-
-import ImageWithFallback from './ImageWithFallback';
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { View } from 'react-native';
+import ImageWithFallback from './ImageWithFallback';
 
 const props = {
   image: '',
@@ -12,7 +10,7 @@ const props = {
   height: undefined,
 };
 
-export const imageUrl = 'https://picsum.photos/200'
+export const imageUrl = 'https://picsum.photos/200';
 
 const imageWithFallbackStories = storiesOf('ImageWithFallback', module);
 imageWithFallbackStories.addDecorator(withKnobs);
@@ -25,6 +23,10 @@ imageWithFallbackStories.add('displays remote image', () => (
 
 imageWithFallbackStories.add('displays fallback placeholder', () => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <ImageWithFallback {...props} />
+    <ImageWithFallback
+      image={props.image}
+      width={props.width}
+      height={props.height}
+    />
   </View>
 ));

@@ -1,4 +1,6 @@
-interface Product {
+import Category from './Category';
+
+export default interface Product {
   id: string;
   image: string;
   brand: string;
@@ -9,6 +11,6 @@ interface Product {
   name: string;
   description: string;
   category: Category;
-countInStock: number;
+  countInStock: number;
   quantity: number;
 }

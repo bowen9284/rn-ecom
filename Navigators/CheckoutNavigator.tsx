@@ -3,6 +3,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import ShippingScreen from '../Screens/Cart/ShippingScreen';
 import ConfirmScreen from '../Screens/Cart/ConfirmScreen';
 import PaymentScreen from '../Screens/Cart/PaymentScreen';
+import Order from '../Models/Order';
 
 export type CheckoutTabParamList = {
   Cart: undefined;
@@ -13,14 +14,12 @@ export type CheckoutTabParamList = {
 
 const Tab = createMaterialTopTabNavigator<CheckoutTabParamList>();
 
-const CheckoutNavigator = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Shipping" component={ShippingScreen} />
-      <Tab.Screen name="Payment" component={PaymentScreen} />
-      <Tab.Screen name="Confirm" component={ConfirmScreen} />
-    </Tab.Navigator>
-  );
-};
+const CheckoutNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Shipping" component={ShippingScreen} />
+    <Tab.Screen name="Payment" component={PaymentScreen} />
+    <Tab.Screen name="Confirm" component={ConfirmScreen} />
+  </Tab.Navigator>
+);
 
 export default CheckoutNavigator;

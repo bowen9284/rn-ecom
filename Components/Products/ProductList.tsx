@@ -1,11 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import ProductListItem from './ProductListItem';
 import { ProductsScreenNavigationProp } from '../../Screens/ProductsScreen';
-import { useNavigation } from '@react-navigation/native';
 import ErrorText from '../ErrorText';
 
 import ProductsSkeleton from '../Skeletons/ProductsSkeleton';
+import Product from '../../Models/Product';
 
 interface Props {
   products: Product[];

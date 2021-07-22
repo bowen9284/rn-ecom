@@ -1,14 +1,19 @@
 import { Platform } from 'react-native';
-import type { RootState } from '../Redux/store';
 
-const envBaseUrl = __DEV__
-  ? Platform.OS === 'android'
-    ? 'http://10.0.2.2.3000/api/v1/'
-    : 'http://localhost:3000/api/v1/'
-  : 'https://rn-ecom-server.herokuapp.com/api/v1/';
+const envBaseUrl = () => {
+  // eslint-disable-next-line no-undef
+  if (__DEV__) {
+    return Platform.OS === 'android'
+      ? 'http://10.0.2.2.3000/api/v1/'
+      : 'http://localhost:3000/api/v1/';
+  }
+
+  return 'https://rn-ecom-server.herokuapp.com/api/v1/';
+};
+
 export const baseUrl = {
-  baseUrl: envBaseUrl,
-  prepareHeaders: (headers, { getState }) => {
+  baseUrl: envBaseUrl(),
+  prepareHeaders: (headers: any) => {
     // @todo add token to redux store
     // const token = (getState() as RootState).auth.token
     const token =

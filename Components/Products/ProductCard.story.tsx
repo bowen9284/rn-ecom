@@ -4,6 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import ProductCard from './ProductCard';
 import { imageUrl } from '../ImageWithFallback.story';
 import { Box } from '../Restyle/Restyle';
+import Product from '../../Models/Product';
 
 export const product: Product = {
   id: '5f15d8852a025143f9593a7c',

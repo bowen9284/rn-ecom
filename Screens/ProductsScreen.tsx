@@ -1,26 +1,24 @@
-import React, { useCallback, useEffect, useState, useLayoutEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, TextInput, Pressable } from 'react-native';
+import { EvilIcons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 import ProductList from '../Components/Products/ProductList';
 import SearchedProducts from '../Components/Products/SearchedProducts';
-import { EvilIcons } from '@expo/vector-icons';
 import CategoryFilter from '../Components/Products/CategoryFilter';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { HomeStackParamList } from '../Navigators/HomeNavigator';
 import { useGetAllProductsQuery } from '../Services/productApi';
-import { RouteProp } from '@react-navigation/native';
 import { Box } from '../Components/Restyle/Restyle';
 import { useGetAllCategoriesQuery } from '../Services/categoryApi';
+import Product from '../Models/Product';
+import Category from '../Models/Category';
 
 export type ProductsScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
   'ProductsScreen'
 >;
 
-type ProductsScreenRouteProp = RouteProp<HomeStackParamList, 'ProductsScreen'>;
-
 interface Props {
   navigation: ProductsScreenNavigationProp;
-  route: ProductsScreenRouteProp;
 }
 
 const ProductsScreen = (props: Props) => {
@@ -49,7 +47,7 @@ const ProductsScreen = (props: Props) => {
     setInitialState(fetchedProducts);
     setFocus(false);
     setActive(-1);
-    setProducts(fetchedProducts)
+    setProducts(fetchedProducts);
   }, []);
 
   const searchProduct = (text: string) => {
@@ -84,12 +82,11 @@ const ProductsScreen = (props: Props) => {
     );
   };
 
-  // Workaround RTK Query and useEffect not working nicely together here. 
+  // Workaround RTK Query and useEffect not working nicely together here.
   // calling setProducts(fetchProducts) in useEffect does not set state before initial render :-/
-  const productsList = () => {
-    return active === -1 && products.length === 0 ? fetchedProducts : products
-  }
-  
+  const productsList = () =>
+    active === -1 && products.length === 0 ? fetchedProducts : products;
+
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <Box
@@ -144,7 +141,6 @@ const ProductsScreen = (props: Props) => {
     </Box>
   );
 };
-
 
 const styles = StyleSheet.create({
   searchInput: {

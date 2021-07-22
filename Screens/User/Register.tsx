@@ -1,16 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-interface Props {
-    
-}
+const Register = () => (
+  <View>
+    <Text>Register</Text>
+  </View>
+);
 
-const Register = (props: Props) => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
-
-export default Register
+export default Register;
